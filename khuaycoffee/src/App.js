@@ -1,11 +1,12 @@
 
 import './App.css';
+import ProductDetail from '../src/Components/Product/ProductDetail';
 
 function App() {
   return (
     <div className="App">
         <a>
-          Khuay Coffee
+          <ProductDetail></ProductDetail>
         </a>
 
     </div>
