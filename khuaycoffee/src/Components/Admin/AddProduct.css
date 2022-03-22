@@ -1,0 +1,40 @@
+.content{
+    margin-top: 6rem;
+    margin-bottom: 5rem;
+    top: 10vh;
+    background: rgb(241, 234, 189);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 0px #000;
+    width: 500px;
+    height: 600px;
+}
+/* table td{
+    text-align: left;
+} */
+.label{
+    font-size: 1.1rem;
+    color: #000;
+    padding: 7px 0;
+}
+.formInput{
+    font-size: 1.2rem;
+    line-height: 20px;
+    width: 290px;
+}
+.Padding{
+    margin: 5px;
+}
+.buttonSubmit{
+    height: 40px;
+    width: 120px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    background-color: aquamarine;
+}
+.area{
+    height:70px;
+}
+.seclectInput{
+    margin: 0px;
+}
