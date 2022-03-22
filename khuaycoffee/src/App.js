@@ -1,13 +1,10 @@
-
 import './App.css';
+import Products from './Components/Products/index'
 
 function App() {
   return (
     <div className="App">
-        <a>
-          Khuay Coffee
-        </a>
-
+      <Products />
     </div>
   );
 }
