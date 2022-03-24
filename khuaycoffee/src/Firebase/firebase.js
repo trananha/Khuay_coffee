@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, getDoc, addDoc ,updateDoc,doc} from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, addDoc ,updateDoc,doc,deleteDoc} from 'firebase/firestore/lite';
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 import { async } from './firebase';
@@ -32,9 +32,9 @@ export async function getData(colId, db){
   return dataList;
 }
 
-export async function deleteDoc(docId, colId,db){
-  const doc= doc(db,colId+"/"+docId);
-  deleteDoc(doc).then(
+export async function deleteData(docId, colId,db){
+  const docref= doc(db,colId+"/"+docId);
+  deleteDoc(docref).then(
     ()=>console.log("Xóa doc thành công")
   ).catch(
     ()=>console.log("Xóa doc không thành công")
