@@ -1,8 +1,7 @@
 import './index.css';
 import product from '../../Assets/sp1.jpg'
-import { db } from "../../Firebase/firebase";
+import { db, getData } from "../../Firebase/firebase";
 import { collection, getDocs, query, orderBy, where } from "firebase/firestore";
-import { doc, getDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import ProductCard from './ProductCard';
 
@@ -18,8 +17,6 @@ function Products() {
       const q = query(collection(db, "Product"), orderBy(filter, "desc"));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => array.push(doc));
-
-      setProducts(array);
     }
 
     fetchData();
@@ -36,22 +33,16 @@ function Products() {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => array.push(doc));
 
-    setProducts(array);
+    //setProducts(array);
   }
 
   const [ render, setRender ] = useState(true);
 
-    useEffect(() =>{   
-        const id = '85Mqzp4CIgsdz5P5pWU0'
-
-        // Read data from Firebase
+    useEffect(() => {
         var fetchData = async() => {
-            // Read job's data
-            const jobRef = doc(db, 'Product', id);
-            const jobSnap = await getDoc(jobRef);
-            var temp = jobSnap.data();
-            console.log(temp.name);
+            var temp = getData("Product", db);
             setProducts(temp);
+            console.log(products);
         }
         fetchData();
     },[render]);
@@ -78,17 +69,18 @@ function Products() {
           </div>
 
           <div className='products'>
-            <form className="example" onSubmit={handleSubmit}>
-                <input className='search'
-                  key="input-search"
-                  type="text"
-                  placeholder="Tìm kiếm..."
-                  value={keyword}
-                  onChange={(e) => setKeyword(e.target.value)}
-                />
-            </form>
+            <input className='search'
+              key="input-search"
+              type="text"
+              placeholder="Tìm kiếm..."
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
+            />
             <div className='pros'>
               <ProductCard />
+              {/* {products.map((product) => (
+                <ProductCard />
+              ))} */}
             </div>
           </div>
 
