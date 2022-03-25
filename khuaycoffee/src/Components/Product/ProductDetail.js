@@ -3,34 +3,22 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'font-awesome/css/font-awesome.min.css';
 import './productDetail.css';
 import { useState } from 'react';
+import {getData, addData, deleteData, updateData, CUSTOMER, ORDER, PRODUCT, CART } from '../../Firebase/firebase'
 import { projectFirestore } from '../../Firebase/firebase';
 
 function ProductDetail() {
+    var product = getData(PRODUCT);
+    console.log(product);
 
-    // const [product, setProduct] = useState("");
-    // const [ID, setID] = useState("");
-    // const [price, setPrice] = useState(0);
-    // const [quantity, setQuantity] = useState(0);
-    // const [mass, setMass] = useState(0);
-    // const [makeof, setMakeof] = useState("");
-    // const [size, setSize] = useState("");
-    // const [image, setImage] = useState("");
-    // const [description, setDescription] = useState("");
-    // console.log(image);
-
-    // const handleSubmit = () => {
-
-    //     projectFirestore.collection('Product').doc(ID).set({
-    //         name: product,
-    //         price: price,
-    //         quantity: quantity,
-    //         mass: mass,
-    //         image: image,
-    //         description: description,
-    //         makeof: makeof
-    //     })
-    //     // console.log(product);
-    // }
+    const [productDetail, showProductDetail] = useState ([
+        {id: '1', name: 'Cà phê Ánh Sáng G', price: 100000, component: 'Arabica, Robusta, Excelsa, Catimor', mass: 250, image: 'https://trungnguyencoffeevn.com/wp-content/uploads/2018/09/sang20tao204-218569j9752.jpg' },
+        {id: '2', name: 'Cà phê Ánh Sáng I', price: 200000, component: 'Arabica, Aname, Excelsa, Canama', weight: 250, image: 'https://trungnguyencoffeevn.com/wp-content/uploads/2018/09/sang20tao204-218569j9752.jpg' },
+        {id: '3', name: 'Cà phê Sáng Tạo G', price: 100000, component: 'Araha, Robita, Exescia, Catimor', weight: 250, image: 'https://trungnguyencoffeevn.com/wp-content/uploads/2018/09/sang20tao204-218569j9752.jpg' },
+        {id: '4', name: 'Cà phê Sáng Tạo I', price: 100000, component: 'Akaca, Robusta, Manala, Chacimo', weight: 250, image: 'https://trungnguyencoffeevn.com/wp-content/uploads/2018/09/sang20tao204-218569j9752.jpg' }
+    ])
+    // let [cart, showCart] = useState([
+    //     {id:};
+    // ])
     function CloseCart() {
         var cart = document.getElementById("CartDrawer");
         // console.log(cart);
@@ -262,10 +250,10 @@ function ProductDetail() {
                                                 </div>
                                                 <div className="grid__item one-half text-right cart_prices">
                                                     <span className="cart-price">500.000₫</span>
-                                                    <a onClick={(event) => { DeleteCartProduct(event.target) }}
+                                                    {/* <a onClick={(event) => { DeleteCartProduct(event.target) }}
                                                         className="cart__btn-remove remove-item-cart ajaxifyCart--remove" href="javascript:;" data-line={1}>
                                                         Xóa
-                                                    </a>
+                                                    </a> */}
                                                 </div>
                                             </div>
                                         </div>
@@ -296,12 +284,12 @@ function ProductDetail() {
                                                 </div>
                                                 <div className="grid__item one-half text-right cart_prices">
                                                     <span className="cart-price">500.000₫</span>
-                                                    <a
+                                                    {/* <a
                                                         onClick={(event) => { DeleteCartProduct(event.target) }} href="javascript:;" data-line={1}
                                                         className="cart__btn-remove remove-item-cart ajaxifyCart--remove"
                                                     >
                                                         Xóa
-                                                    </a>
+                                                    </a> */}
                                                 </div>
                                             </div>
                                         </div>
