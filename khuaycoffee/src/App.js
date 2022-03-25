@@ -1,5 +1,11 @@
 
 import './App.css';
+<<<<<<< HEAD
+import AddProduct from './Components/Admin/AddProduct';
+import ChangeProductInfo from './Components/Admin/ChangeProductInfo';
+import OrderDetail from './Components/Admin/OrderDetail';
+
+=======
 import { Route, Routes,Link } from 'react-router-dom';
 import Account from './Components/Admin/Account';
 import Order from './Components/Admin/Order';
@@ -11,13 +17,16 @@ const addAcount=()=>{
     addData(account_data[i],CUSTOMER,db)
   }
 }
+>>>>>>> main
 function App() {
   return (
     <>
     
     <div className="App">
         <a>
-          Khuay Coffee
+          <AddProduct></AddProduct>
+          {/* <OrderDetail></OrderDetail> */}
+          {/* <ChangeProductInfo></ChangeProductInfo> */}
         </a>
         <button>
           <Link to='/admin/accounts' >Admin</Link>
