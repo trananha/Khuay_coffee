@@ -7,9 +7,21 @@ import {Button} from 'react-bootstrap';
 import {BsTrashFill} from 'react-icons/bs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useLocation} from 'react-router-dom';
+import { db,getData,deleteData,CUSTOMER } from './../../Firebase/firebase';
+
+const refreshData= async (setState)=>{
+  const data= await getData(CUSTOMER,db);
+  setState(data);
+}
 
 function Account(){
     const path= useLocation();
+    const [accountData,setAccountData] =React.useState([]);
+    const [update,setUpdate]=React.useState(true);
+    React.useEffect(()=>{
+      refreshData(setAccountData)
+    },[update]);
+
     return (
         <>  
             <div className="d-flex flex-grow-1">
@@ -20,15 +32,15 @@ function Account(){
                 <br/>
                 <br/>
                 <ReactTable
-                  data={account_data}
+                  data={accountData}
                   columns={[
                     {
                       Header: "Tên tài khoản",
                       accessor:'name'
                     } ,
                     {
-                      Header: "Ngày tham gia",
-                      accessor:'date'
+                      Header: "Email",
+                      accessor:'email'
                     },
                     {
                       Header: "Mật khẩu",
@@ -36,10 +48,13 @@ function Account(){
                     },
                     {
                       Header:"Sửa",
-                      accessor:'id',
+                      accessor:'docId',
                       Cell:(props)=>{
                           return (
-                              <Button variant="danger" onClick={()=>console.log('delete account: ',props.value)}>
+                              <Button variant="danger" onClick={()=>{
+                                deleteData(props.value,CUSTOMER,db);
+                                setUpdate(!update);
+                              }}>
                                   <BsTrashFill/>
                               </Button>
                           )
