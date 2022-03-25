@@ -7,9 +7,12 @@ import ProductCard from './ProductCard';
 
 function Products() {
   const [filter, setFilter] = useState("makeof");
-  const [products, setProducts] = useState();
   const [dur, setDur] = useState("None");
   const [keyword, setKeyword] = useState("");
+
+  var products = getData("Product", db);
+  console.log(products);
+  console.log(typeof products);
 
   useEffect(() => {
     async function fetchData() {
@@ -36,16 +39,16 @@ function Products() {
     //setProducts(array);
   }
 
-  const [ render, setRender ] = useState(true);
+  // const [ render, setRender ] = useState(true);
 
-    useEffect(() => {
-        var fetchData = async() => {
-            var temp = getData("Product", db);
-            setProducts(temp);
-            console.log(products);
-        }
-        fetchData();
-    },[render]);
+  //   useEffect(() => {
+  //       var fetchData = async() => {
+  //           var temp = getData("Product", db);
+  //           setProducts(temp);
+  //           console.log(products);
+  //       }
+  //       fetchData();
+  //   },[render]);
   
   return (
     <div className="App">
