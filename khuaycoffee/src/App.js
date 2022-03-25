@@ -26,6 +26,17 @@ function App() {
         <button onClick={()=>{console.log(updateData({"testvalue":"hyhyhyhy"},"testid",CUSTOMER,db))}}>Update</button>
         <button onClick={()=>{addAcount()}}>Add</button>
         <button onClick={()=>{deleteData("Ubblr6mf2umKViVTatni",CUSTOMER,db)}}>delete</button>
+      <Routes>
+        <Route path="/" element={<Banner />} />
+        <Route path="/admin/account" element={<Account />} />
+        <Route path="/admin/product" element={<Product />} />
+        <Route path="/admin/order" element={<Order/>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/product" element={<Category />} />
+        <Router path="/product/:id" element={<ProductDetail />} />
+
+      </Routes>
 
     </div>
     <Routes>
