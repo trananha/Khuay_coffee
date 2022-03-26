@@ -1,15 +1,24 @@
 import './App.css';
+import SignInInterface from './pages/signin';
 import Header from './components/header';
-import Banner from './components/banner';
+import Footer from './components/footer';
+import SignUpInterface from './pages/signup';
+import {BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-        {/* <a>
-          Khuay Coffee
-        </a> */}
-        <Header/>
-        <Banner />
+      <Header/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SignInInterface />} />
+          <Route path="/signin" element={<SignInInterface />} />
+          <Route path="/signup" element={<SignUpInterface />} />
+        </Routes>
+      </BrowserRouter>
+      
+      <Footer />
+
     </div>
   );
 }
