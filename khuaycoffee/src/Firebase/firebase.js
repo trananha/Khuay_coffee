@@ -28,7 +28,7 @@ export async function getData(colId, db){
     const a=docref.data();
     return {...a,docId:docref.id}
   });
-  console.log("Adsadas",dataList);
+  // console.log("Adsadas",dataList);
   return dataList;
 }
 
