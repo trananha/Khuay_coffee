@@ -19,6 +19,7 @@ export const db = getFirestore(app);
 export const CUSTOMER="Customer";
 export const ORDER="OrderDetail";
 export const PRODUCT="Product";
+export const CART="Cart";
 
 export async function getData(colId, db){
   const col= collection(db ,colId);
