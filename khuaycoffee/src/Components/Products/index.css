@@ -6,6 +6,7 @@
     text-align: center;
     background-color: #c4c4c4;
     height: 100vh;
+    padding-top: 10px;
   }
   
   .App-logo {
@@ -102,12 +103,14 @@
   
   .main .products {
     flex: 80%;
+    padding-left: 50px;
   }
   
   .main .filter .title {
     margin-bottom: 20px;
     font-weight: bold;
-    font-size: large;
+    font-size: 30px;
+    font-family: 'Brush Script MT', cursive;
   }
   
   .main .filter .filt {
@@ -131,6 +134,7 @@
     width: 6cm;
     height: 10cm;
     margin: 0 50px 50px 0;
+    background-color: #B9A6A6;
   }
   
   .container {
@@ -154,4 +158,41 @@
   
   .container img {
     height: 6cm;
+  }
+
+  .cardname {
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Alfa Slab One (x);
+    text-align: center;
+    padding-top: 15px;
+  }
+   
+  .cardprice {
+    font-family: monospace;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+  .filterlabel {
+    font-family: monospace;
+    padding-left: 5px;
+    font-size: 20px;
+  }
+
+  .rightbar {
+    border: 1px solid #542E2E;
+    padding: 10px;
+    box-shadow: 10px 10px #B9A6A6;
+  }
+
+  .rightbarname {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    padding-bottom: 10px;
+  }
+
+  hr.dashed {
+    border-top: 3px dashed #bbb;
   }

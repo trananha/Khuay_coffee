@@ -64,13 +64,14 @@ function Products() {
           <div className='filter'>
             <div className='title'>COFFEE POWDER</div>
 
-            <div>
-              <div>COFFEE TYPE</div>
+            <div className='rightbar'>
+              <div className='rightbarname'>COFFEE TYPE</div>
+              
               <div>
                 <input className="form-check-input" type="checkbox" id="type1" name="type1" defaultChecked={regularCheck} onChange={()=> setRegularCheck(!regularCheck)}></input>
-                <label htmlFor="type1">Regular</label><br/>
+                <label htmlFor="type1" className='filterlabel' >Regular</label><br/>
                 <input className="form-check-input" type="checkbox" id="type2" name="type2" defaultChecked={decafCheck} onChange={()=> setDecafCheck(!decafCheck)}></input>
-                <label htmlFor="type2">Decaf</label>
+                <label htmlFor="type2" className='filterlabel'>Decaf</label>
               </div>
             </div>
           </div>
@@ -79,7 +80,7 @@ function Products() {
             <input className='search'
               key="input-search"
               type="text"
-              placeholder="Tìm kiếm..."
+              placeholder=" Tìm kiếm..."
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
               onKeyDown={(e)=>searchHandle(e)}
