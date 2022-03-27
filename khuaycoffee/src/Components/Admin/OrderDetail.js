@@ -1,13 +1,41 @@
 import './OrderDetail.css'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-function OrderDetail() {
+import { ORDER,CUSTOMER, db, getData } from '../../Firebase/firebase'
+function OrderDetail({id}) {
     const [order, setOrder] = useState([1, 2, 3, 4]);
     const [orderID, setOrderID] = useState("ABS001");
     const [name, setName] = useState("Nguyẽn Văn A");
     const [customerID, setCustomerID] = useState("KH01");
     const [address, setAddress] = useState("Hà Nội");
     const [dayTime, setDayTime] = useState("2020-01-01");
+    const [orderData, setOrderData] = useState([]);
+    const [totalmoney, setTotalmoney] = useState(0);
+    const[userData,setUserData]=useState([]);
+
+    useEffect(async () => {
+        setOrderData(await getData(ORDER, db));
+        for (var i of orderData) {
+            if (i.ID === id) {
+                setOrderID(i.ID);
+                setCustomerID(i.customerid);
+                setDayTime(i.purchasedate);
+                setTotalmoney(i.totalmoney);
+                setOrder(i.list_product);
+            }
+        }
+        setUserData(await getData(CUSTOMER, db));
+        for (var i of userData) {
+            if (i.ID === customerID) {
+                setName(i.name);
+                setAddress(i.address);
+            }}
+
+        console.log("data")
+        console.log(orderData);
+        console.log(userData);
+
+    }, [])
     return (
         <div >
             <div className="content2">
