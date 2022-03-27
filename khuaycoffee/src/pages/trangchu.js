@@ -1,6 +1,7 @@
 import Banner from '../components/banner';
 import SwipeableTextMobileStepper from '../components/carousel';
-function App() {
+
+function Home() {
   return (
     <div className="App">
         <Banner />
@@ -9,4 +10,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

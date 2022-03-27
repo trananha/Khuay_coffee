@@ -35,7 +35,6 @@ const Footer = ({additionalStyle}) => {
                 <Typography sx={{mb:1}} variant={`h6`} align="left">
                     {`Hotline: 0866457235`}
                 </Typography>
-                <Typography variant={`subtitle2`} align="left" sx={{fontStyle:'italic'}}>Chat with us</Typography>
             </Grid>
             <Grid item xs={12} sm={3} md={3} mx={3}>
                 <Typography variant={`h5`} align="left" sx={{fontWeight:'bold'}}> SÁNG LẬP</Typography>

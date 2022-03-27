@@ -100,9 +100,9 @@ function SignInInterface() {
             >
               Đăng nhập
             </Button>
-            <Button onClick={()=>console.log("lohin",isLogin)}>
+            {/* <Button onClick={()=>console.log("lohin",isLogin)}>
               Test
-            </Button>
+            </Button> */}
             <Typography>
               {confirm}
             </Typography>

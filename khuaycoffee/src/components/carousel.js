@@ -10,27 +10,27 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { Grid } from '@mui/material';
+import phuonghuong from "../assets/phuonghuong.jpg"
+import trainghiem from "../assets/trainghiem.jpg"
+import thanhtuu from "../assets/demo.jpg"
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
   {
     label: 'THÀNH TỰU',
-    message: 'Giải thường Greate Taste Award 2020, 21 triệu người mua vào năm 2021, 10.000 lượt truy cập mỗi ngày',
-    imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
+    message: 'Là nơi cung cấp cà phê và các loại thiết bị pha chế uy tín trên cả nước',
+    imgPath: thanhtuu,
   },
   {
     label: 'PHƯƠNG HƯỚNG',
-    message: 'Chúng tôi chọn lọc các loại cà phê tốt nhất từ nhiều quốc gia trên thế giới',
-    imgPath:
-      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
+    message: 'Chúng tôi muốn tiếp cận đến những ai đam mê uống cà phê như một thói quen',
+    imgPath: phuonghuong,
   },
   {
     label: 'TRẢI NGHIỆM',
     message: 'Mang đến trải nhiệm chân thật nhất từ cách pha đến cách thưởng thức',
-    imgPath:
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
+    imgPath: trainghiem,
   },
 ];
 
@@ -76,43 +76,27 @@ function SwipeableTextMobileStepper() {
         {images.map((step, index) => (
           <div key={step.label}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <Box sx={{width: 500 ,backgroundColor:"#B9A6A6", display: 'flex'}}>
-                <Box sx={{display:{xs:'none',md:'flex', flexDirection: "column"},justifyContent:'space-evenly'}}>
-                  <Typography>
-                    {step.message}
+              <Grid sx={{bgcolor:"#B9A6A6"}} container>
+                <Grid item  sx={{pt: 0.5, pb: 0.5 }}>
+                  <Box
+                   component="img"
+                   sx={{
+                     height: 355,
+                     width: "100%",
+                     maxWidth: 600,
+                     display: 'block',
+                     overflow: 'hidden',
+                   }}
+                   src={step.imgPath}
+                   alt={step.label}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} sx={{display:{xs:'none',md:'flex', flexDirection: "column"},justifyContent:'space-evenly'}}>
+                  <Typography sx={{fontWeight: "bold", fontStyle: 'oblique', fontFamily: 'Monospace'}}>
+                     {step.message}
                   </Typography>
-                </Box>
-                <Box
-                  component="img"
-                  sx={{
-                    height: "100%",
-                    display: 'block',
-                    overflow: 'hidden',
-                    
-                  }}
-                  src={step.imgPath}
-                  alt={step.label}
-                />
-              </Box>
-              // <Grid sx={{bgcolor:"#B9A6A6"}} container>
-              //   <Grid item sx={{display:{xs:'none',md:'flex', flexDirection: "column"},justifyContent:'space-evenly'}}>
-              //     <Typography>
-              //        {step.message}
-              //     </Typography>
-              //   </Grid>
-              //   <Grid item sx={{pt: 0.5, pb: 0.5 }}>
-              //     <Box
-              //      component="img"
-              //      sx={{
-              //        height: "100%",
-              //        display: 'block',
-              //        overflow: 'hidden',
-              //      }}
-              //      src={step.imgPath}
-              //      alt={step.label}
-              //     />
-              //   </Grid>
-              // </Grid>
+                </Grid>
+              </Grid>
             ) : null}
           </div>
         ))}
