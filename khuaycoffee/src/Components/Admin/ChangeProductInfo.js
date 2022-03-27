@@ -1,43 +1,61 @@
 import './AddProduct.css'
-import { useState } from 'react';
-import { db } from '../../Firebase/firebase';
-import { collection, addDoc } from "firebase/firestore"; 
+import { useState,useEffect } from 'react';
+import {updateData,PRODUCT,db,getData} from '../../Firebase/firebase'
 
-function ChangeProductInfo() {
-
-    const [product, setProduct] = useState("Apples");
-    const [ID, setID] = useState("SP00");
-    const [price, setPrice] = useState(200000);
-    const [quantity, setQuantity] = useState(2);
-    const [mass, setMass] = useState(250);
-    const [makeof, setMakeof] = useState("Cà phê");
-    const [size, setSize] = useState("Mịn");
+const getDataProduct=async (setState)=>{
+    const data= await getData(PRODUCT,db);
+    setState(data);
+}
+function ChangeProductInfo({id}) {
+    const [IDCol, setIDCol] = useState("");
+    const [product, setProduct] = useState("");
+    const [ID, setID] = useState("");
+    const [price, setPrice] = useState(0);
+    const [quantity, setQuantity] = useState(0);
+    const [mass, setMass] = useState();
+    const [makeof, setMakeof] = useState("");
     const [image, setImage] = useState("");
-    const [description, setDescription] = useState("Không có gì");
+    const [description, setDescription] = useState("");
+    const [roast, setRoast] = useState("");
+    const [type, setType] = useState("");
+    const [productData, setProductData] = useState([]);
     // console.log(image);
+    useEffect(()=>{
 
+        getDataProduct(setProductData);
+        console.log(productData);
+        for(var i of productData){
+        if(i.ID === id)
+        {
+            
+            setID(i.ID);
+            setProduct(i.name);
+            setPrice(i.price);
+            setQuantity(i.quantity);
+            setMass(i.mass);
+            setMakeof(i.makeof);
+            setImage(i.image);
+            setDescription(i.description);
+            setRoast(i.roast);
+            setType(i.type);
+            setIDCol(i.docId);
+            console.log(i.docId);
+        }
+    }
+    },[])
+    
     const handleSubmit = async () => {
-        try {
-            const docRef = await addDoc(collection(db, "users"), {
-              first: "Ada",
-              last: "Lovelace",
-              born: 1815
-            });
-            console.log("Document written with ID: ", docRef.id);
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
-
-        // const product = db.collection('Product').doc(ID).set({
-        //     name: product,
-        //     price: price,
-        //     quantity: quantity,
-        //     mass: mass,
-        //     image: image,
-        //     description: description,
-        //     makeof: makeof
-        // })
-        // console.log(product);
+        await updateData({
+            ID: ID, 
+            name: product,
+            price: price,
+            quantity: quantity,
+            mass: mass,
+            image: image,
+            description: description,
+            makeof: makeof
+        },IDCol,PRODUCT,db);
+        console.log("update");
     }
     return (
         <div>
@@ -95,16 +113,30 @@ function ChangeProductInfo() {
                     </tr>
                     <tr>
                         <td>
-                            <label className=" label">Cỡ hạt</label>
+                            <label className=" label">Loại</label>
                         </td>
                         <td>
-                            <select className="Padding formInput selectInput" onChange={e => setSize(e.target.value)} value={size} aria-label=".form-select-sm example">
+                            <select className="Padding formInput selectInput" onChange={e => setType(e.target.value)} aria-label=".form-select-sm example" value={type}>
 
-                                <option selected >-- Chọn cỡ hạt --</option>
-                                <option value="Mịn">Mịn</option>
-                                <option value="Hơi Mịn">Hơi Mịn</option>
-                                <option value="Vừa">Vừa</option>
-                                <option value="Thô">Thô</option>
+                                <option selected >-- Chọn loại --</option>
+                                <option value="regular">Regular</option>
+                                <option value="decaf">Decaf</option>
+
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label className=" label">Loại rang</label>
+                        </td>
+                        <td>
+                            <select className="Padding formInput selectInput" onChange={e => setRoast(e.target.value)} aria-label=".form-select-sm example" value={roast}>
+
+                                <option selected >-- Chọn loại rang --</option>
+                                <option value="dark-espresso">Dark Espresso</option>
+                                <option value="medium-dark">Medium Dark</option>
+                                <option value="light">Light</option>
+
                             </select>
                         </td>
                     </tr>

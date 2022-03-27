@@ -1,11 +1,9 @@
 
 import './App.css';
-<<<<<<< HEAD
 import AddProduct from './Components/Admin/AddProduct';
 import ChangeProductInfo from './Components/Admin/ChangeProductInfo';
 import OrderDetail from './Components/Admin/OrderDetail';
 
-=======
 import { Route, Routes,Link } from 'react-router-dom';
 import Account from './Components/Admin/Account';
 import Order from './Components/Admin/Order';
@@ -17,18 +15,18 @@ const addAcount=()=>{
     addData(account_data[i],CUSTOMER,db)
   }
 }
->>>>>>> main
+var idSP = "SP01"
 function App() {
   return (
     <>
     
     <div className="App">
         <a>
-          <AddProduct></AddProduct>
-          {/* <OrderDetail></OrderDetail> */}
-          {/* <ChangeProductInfo></ChangeProductInfo> */}
+          {/* <AddProduct></AddProduct> */}
+          {/* <OrderDetail id = 'ORD01'></OrderDetail> */}
+          <ChangeProductInfo id ={idSP}></ChangeProductInfo>
         </a>
-        <button>
+        {/* <button>
           <Link to='/admin/accounts' >Admin</Link>
         </button>
         <button onClick={async ()=>{console.log(await getData(CUSTOMER,db))}}>Get</button>
@@ -45,14 +43,9 @@ function App() {
         <Route path="/product" element={<Category />} />
         <Router path="/product/:id" element={<ProductDetail />} />
 
-      </Routes>
-
+      </Routes> */}
     </div>
-    <Routes>
-        <Route path="/admin/accounts" element={<Account/>} />
-        <Route path="/admin/products" element={<Product/>} />
-        <Route path="/admin/orders" element={<Order/>} />
-    </Routes>
+
     </>
   );
 }
