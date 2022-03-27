@@ -63,15 +63,13 @@ function Products() {
       <div className='main'>
           <div className='filter'>
             <div className='title'>COFFEE POWDER</div>
-            <div className='filt'>
-              <div className='a'>0 filter</div>
-            </div>
+
             <div>
               <div>COFFEE TYPE</div>
               <div>
-                <input type="checkbox" id="type1" name="type1" defaultChecked={regularCheck} onChange={()=> setRegularCheck(!regularCheck)}></input>
+                <input className="form-check-input" type="checkbox" id="type1" name="type1" defaultChecked={regularCheck} onChange={()=> setRegularCheck(!regularCheck)}></input>
                 <label htmlFor="type1">Regular</label><br/>
-                <input type="checkbox" id="type2" name="type2" defaultChecked={decafCheck} onChange={()=> setDecafCheck(!decafCheck)}></input>
+                <input className="form-check-input" type="checkbox" id="type2" name="type2" defaultChecked={decafCheck} onChange={()=> setDecafCheck(!decafCheck)}></input>
                 <label htmlFor="type2">Decaf</label>
               </div>
             </div>
