@@ -10,6 +10,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { db, CUSTOMER, addData } from '../Firebase/firebase';
 import { store } from '..';
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 const theme = createTheme();
 
 function Singup(name, email, password, phone, address, setConfirm) {
@@ -42,6 +44,8 @@ function SignUpInterface() {
   const [password, setPassword] = React.useState('')
   const [phone, setPhone] = React.useState('')
   const [address, setAddress] = React.useState('')
+  const navigate = useNavigate()
+  const handleOnClickLogin = useCallback(() => navigate('/Login', {replace: true}), [navigate]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -138,9 +142,9 @@ function SignUpInterface() {
             <Typography>
               {confirm}
             </Typography>
-            <Grid container justifyContent="flex-end" >
+            <Grid container justifyContent="center" >
               <Grid item>
-                <Link href="#" variant="caption" color="inherit">
+                <Link href="#" variant="caption" color="inherit" onClick={handleOnClickLogin}>
                   Đã có tài khoản? Đăng nhập
                 </Link>
               </Grid>

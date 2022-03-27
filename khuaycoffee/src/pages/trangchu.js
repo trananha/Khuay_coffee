@@ -3,7 +3,7 @@ import SwipeableTextMobileStepper from '../components/carousel';
 
 function Home() {
   return (
-    <div className="App">
+    <div>
         <Banner />
         <SwipeableTextMobileStepper />
     </div>

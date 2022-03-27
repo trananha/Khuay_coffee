@@ -5,8 +5,9 @@
   .App {
     text-align: center;
     background-color: #c4c4c4;
-    height: 100vh;
+    height: auto;
     padding-top: 10px;
+    padding-bottom: 10px;
   }
   
   .App-logo {

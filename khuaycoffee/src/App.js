@@ -1,28 +1,26 @@
-
 import './App.css';
-import AddProduct from './Components/Admin/AddProduct';
-import ChangeProductInfo from './Components/Admin/ChangeProductInfo';
-import OrderDetail from './Components/Admin/OrderDetail';
+// import AddProduct from './components/Admin/AddProduct';
+// import ChangeProductInfo from './components/Admin/ChangeProductInfo';
+// import OrderDetail from './components/Admin/OrderDetail';
 
 import { Route, Routes,Link } from 'react-router-dom';
-import Account from './Components/Admin/Account';
-import Order from './Components/Admin/Order';
-import Product from './Components/Admin/Product';
-import {db,CUSTOMER,getData,updateData,addData,deleteData} from './Firebase/firebase';
-import { account_data } from './Components/Admin/FakeData';
+import Account from './components/Admin/Account';
+import Order from './components/Admin/Order';
+import Product from './components/Admin/Product';
+// import {db,CUSTOMER,getData,updateData,addData,deleteData} from './Firebase/firebase';
+// import { account_data } from './components/Admin/FakeData';
 import Home from './pages/trangchu';
 import SignInInterface from './pages/signin';
 import SignUpInterface from './pages/signup';
-import ProductCard from './Components/Products/ProductCard';
-import ProductDetail from './Components/Product/ProductDetail'
-import Header from './Components/header.js'
-import Footer from './Components/footer.js'
+import ProductCard from './components/Products/ProductCard';
+import ProductDetail from './components/Product/ProductDetail'
+import Header from './components/header.js'
+import Footer from './components/footer.js'
+import Products from './components/Products';
 var idSP = "SP01"
 function App() {
   return (
-    <>
-    
-    <div className="App">
+    <div>
       <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -31,14 +29,11 @@ function App() {
         <Route path="/admin/order" element={<Order/>} />
         <Route path="/login" element={<SignInInterface />} />
         <Route path="/register" element={<SignUpInterface />} />
-        <Route path="/product-card" element={<ProductCard />} />
-        <Router path="/product/:id" element={<ProductDetail />} />
-
+        <Route path="/products" element={<Products />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
       </Routes>
       <Footer/>
     </div>
-
-    </>
   );
 }
 

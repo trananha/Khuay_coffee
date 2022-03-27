@@ -81,7 +81,7 @@ function SwipeableTextMobileStepper() {
                   <Box
                    component="img"
                    sx={{
-                     height: 355,
+                     height: 455,
                      width: "100%",
                      maxWidth: 600,
                      display: 'block',
@@ -91,7 +91,7 @@ function SwipeableTextMobileStepper() {
                    alt={step.label}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6} md={6} sx={{display:{xs:'none',md:'flex', flexDirection: "column"},justifyContent:'space-evenly'}}>
+                <Grid item xs={12} sm={6} md={6} sx={{px: 20,display:{xs:'none',md:'flex', flexDirection: "column"},justifyContent:'space-evenly'}}>
                   <Typography sx={{fontWeight: "bold", fontStyle: 'oblique', fontFamily: 'Monospace'}}>
                      {step.message}
                   </Typography>

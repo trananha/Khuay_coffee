@@ -15,16 +15,10 @@ import {store,logout} from '../redux/login'
 import { deepOrange } from '@mui/material/colors';
 import { useSelector, useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-
-
-
-const pages = ['Sản phẩm', 'Giỏ hàng'];
 const settings = ['Đăng ký', 'Đăng nhập'];
-
-
-
-
 
 const Header = () => {
   const dispatch=useDispatch();
@@ -32,6 +26,12 @@ const Header = () => {
   const name=useSelector(state=>state.login.name);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate()
+  const handleOnClickProducts = useCallback(() => navigate('/products', {replace: true}), [navigate]);
+  const handleOnClickCart = useCallback(() => navigate('/products', {replace: true}), [navigate]);
+  const handleOnClickHome = useCallback(() => navigate('/', {replace: true}), [navigate]);
+  const handleOnClickLogin = useCallback(() => navigate('/login', {replace: true}), [navigate]);
+  const handleOnClickRegister = useCallback(() => navigate('/register', {replace: true}), [navigate]);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -46,42 +46,10 @@ const Header = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-  };
-  
-  // let LogBox;
-  // if (isLogin) {
-  //   LogBox = <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
-  //             <Avatar
-  //               sx={{ bgcolor: deepOrange[500] }}
-  //               alt="Remy Sharp"
-  //             >
-  //               {store.getState().name[0].toUpperSase()}
-  //             </Avatar>
-  //             <Link to="/" onClick={()=>dispatch(logout())}>
-  //               <Button sx={{ my: 2, mx: 1, color: 'white', display: 'block', fontWeight: 'bold' }} >
-  //                 Đăng xuất
-  //               </Button>
-  //             </Link>
-              
-  //           </Box>
-  // } else {
-  //   LogBox = <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
-  //             {settings.map((setting) => (
-  //               <Button
-  //                 key={setting}
-  //                 onClick={handleCloseNavMenu}
-  //                 sx={{ my: 2, mx: 1, color: 'white', display: 'block', fontWeight: 'bold' }}
-  //               >
-  //                 {setting}
-  //               </Button>
-  //             ))}
-  //             </Box>
-  // }
-
-  
+  }; 
 
   return (
-    <AppBar position="static" style={{ background: '#542E2E' }}>
+    <AppBar sx={{marginTop:0}} position="static" style={{ background: '#542E2E' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -122,11 +90,21 @@ const Header = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleOnClickHome}>
+                <Typography textAlign="center">Trang chủ</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleOnClickProducts}>
+                <Typography textAlign="center">Sản phẩm</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleOnClickCart}>
+                <Typography textAlign="center">Giỏ hàng</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleOnClickLogin}>
+                <Typography textAlign="center">Đăng nhập</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleOnClickRegister}>
+                <Typography textAlign="center">Đăng kí</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -138,15 +116,24 @@ const Header = () => {
             <img src={logo} alt="Logo" width={70} height={50} sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, mx: 1, color: 'white', display: 'block', fontWeight: 'bold' }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              onClick={handleOnClickHome}
+              sx={{ my: 2, mx: 1, color: 'white', display: 'block', fontWeight: 'bold' }}
+            >
+              Trang chủ
+            </Button>
+            <Button
+              onClick={handleOnClickProducts}
+              sx={{ my: 2, mx: 1, color: 'white', display: 'block', fontWeight: 'bold' }}
+            >
+              Sản phẩm
+            </Button>
+            <Button
+              onClick={handleOnClickCart}
+              sx={{ my: 2, mx: 1, color: 'white', display: 'block', fontWeight: 'bold' }}
+            >
+              Giỏ hàng
+            </Button>
           </Box>
           {isLogin? (
             <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
@@ -164,16 +151,20 @@ const Header = () => {
         
           ):(
             <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
-              {settings.map((setting) => (
                 <Button
-                  key={setting}
-                  onClick={handleCloseNavMenu}
+                  onClick={handleOnClickRegister}
                   sx={{ my: 2, mx: 1, color: 'white', display: 'block', fontWeight: 'bold' }}
                 >
-                  {setting}
+                  Đăng ký
                   {console.log("log",isLogin)}
                 </Button>
-              ))}
+                <Button
+                  onClick={handleOnClickLogin}
+                  sx={{ my: 2, mx: 1, color: 'white', display: 'block', fontWeight: 'bold' }}
+                >
+                  Đăng nhập
+                  {console.log("log",isLogin)}
+                </Button>
               </Box>
           )}
         </Toolbar>

@@ -14,6 +14,8 @@ import { db } from './../Firebase/firebase';
 import { store } from '../redux/login';
 import { login } from '../redux/login';
 import { useDispatch,useSelector } from 'react-redux';
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
@@ -46,6 +48,8 @@ function SignInInterface() {
   const [confirm, setConfirm] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const navigate = useNavigate()
+  const handleOnClickRegister = useCallback(() => navigate('/register', {replace: true}), [navigate]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -106,14 +110,9 @@ function SignInInterface() {
             <Typography>
               {confirm}
             </Typography>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="caption" color="inherit">
-                  Quên mật khẩu?
-                </Link>
-              </Grid>
+            <Grid container justifyContent="center">
               <Grid item>
-                <Link href="#" variant="caption" color="inherit">
+                <Link href="#" variant="caption" color="inherit" onClick={handleOnClickRegister}>
                   {"Tạo tài khoản mới"}
                 </Link>
               </Grid>
