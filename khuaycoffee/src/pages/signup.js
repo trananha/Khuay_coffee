@@ -14,7 +14,7 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 const theme = createTheme();
 
-function Singup(name, email, password, phone, address, setConfirm) {
+function Singup(name, email, password, phone, address, setConfirm,handleOnClickLogin) {
   const USER = {
     'name': name,
     'email': email,
@@ -25,6 +25,7 @@ function Singup(name, email, password, phone, address, setConfirm) {
     'admin' : false
   }
   addData(USER,CUSTOMER,db).then(() => setConfirm('Đăng kí thành công')).catch(() => setConfirm('Đăng kí thất bại'))
+  handleOnClickLogin()
 }
 
 
@@ -135,7 +136,7 @@ function SignUpInterface() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, backgroundColor:"#542E2E" }}
-              onClick={()=>Singup(name, email, password, phone, address, setConfirm)}
+              onClick={()=>Singup(name, email, password, phone, address, setConfirm, handleOnClickLogin)}
             >
               ĐĂNG KÍ
             </Button>
