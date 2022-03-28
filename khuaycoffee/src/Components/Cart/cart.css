@@ -20,6 +20,7 @@
 }
 
 .cart-sidebar {
+    /* max-height: 600px; */
     position: fixed;
     width: 340px;
     top: 0 !important;
@@ -84,8 +85,9 @@
 }
 
 .cart-sidebar .cart_body {
+    max-height: 600px;
     padding: 15px;
-    height: calc(100vh - 210px);
+    /* height: calc(100vh - 100px); */
     overflow-y: auto;
 }
 
@@ -183,6 +185,19 @@
     display: block;
     font-size: 14px;
     color: red;
+    text-align: end;
+}
+.cart-sidebar .cart_body .grid .cart_prices .cart-delete {
+    font-weight: bold;
+    display: block;
+    text-decoration: UNDERLINE;
+    font-size: 14px;
+    color: red;
+    text-align: end;
+}
+
+.cart-sidebar .cart_body .grid .cart_prices .cart-delete:hover {
+    cursor: pointer;
 }
 
 .cart-sidebar .cart_body .grid .cart__btn-remove {
