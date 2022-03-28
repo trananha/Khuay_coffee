@@ -9,7 +9,7 @@ import { projectFirestore } from '../../Firebase/firebase';
 import sp1 from '../../Assets/sp1.jpg';
 
 // function Cart({ idUser, id, quantity, grindSize }) {
-function Cart({ idUser }) {
+function Cart({ idUser, showCartSide }) {
     var cartCustomer;
     const [sumPrice, setSumPrice] = useState(0);
     // const [lenList, setLenList] = useState(0);
@@ -45,7 +45,9 @@ function Cart({ idUser }) {
                     <div id="CartDrawer" className="cart-sidebar active">
                         <div className="clearfix cart_heading">
                             <h4 className="cart_title">Giỏ hàng</h4>
-                            <div className="cart_btn-close" title="Đóng giỏ hàng">
+                            <div className="cart_btn-close" title="Đóng giỏ hàng"
+                                onClick={() => showCartSide(false)}
+                            >
                                 <svg className="Icon Icon--close" viewBox="0 0 16 14">
                                     <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fillRule="evenodd" />
                                 </svg>
@@ -60,18 +62,19 @@ function Cart({ idUser }) {
 
                                             cartCustomer.listQuantity.map((cart, index) => (
                                                 <div key={index}>
-                                                    {/* <h1>{cart}</h1>
-                                                    {console.log(index)}
-                                                    <h2>abc</h2> */}
                                                     <div className="ajaxcart__row">
                                                         <div className="ajaxcart__product cart_product" data-line={1}>
                                                             <div className="cart_image">
-                                                                <img width={80} height={80} src="https:encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWjafn3qTV7audjpe2E4OhtSYAlaMdErjtLA&usqp=CAU" alt="Cà phê Khuây chữ G" />
+                                                                <img width={80} height={95} src="https:encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWjafn3qTV7audjpe2E4OhtSYAlaMdErjtLA&usqp=CAU" alt="Cà phê Khuây chữ G" />
                                                             </div>
                                                             <div className="grid__item cart_info">
                                                                 <div className="ajaxcart__product-name-wrapper cart_name">
                                                                     <p>{cartCustomer.listNameProduct[index]}</p>
-                                                                    <span className="ajaxcart__product-meta variant-title">Khối lượng: {cartCustomer.listWeightProduct[index]}</span>
+                                                                    <div className="">
+                                                                        <span className="ajaxcart__product-meta variant-title float-start">Khối lượng: {cartCustomer.listWeightProduct[index]}</span>
+                                                                        <span className="ajaxcart__product-meta variant-title text-end">Kích cỡ xay: {cartCustomer.listGrindSize[index]}</span>
+                                                                    </div>
+
                                                                 </div>
                                                                 <div className="grid">
                                                                     <div className="grid__item one-half cart_select cart_item_name">
@@ -96,7 +99,7 @@ function Cart({ idUser }) {
                                                                         </div>
                                                                     </div>
                                                                     <div className="grid__item one-half text-right cart_prices">
-                                                                        <span className="cart-price">{cartCustomer.listPri} ₫</span>
+                                                                        <span className="cart-price">{cartCustomer.listPrice[index]} ₫</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -108,90 +111,8 @@ function Cart({ idUser }) {
 
 
                                         }
-                                        {/* <div className="ajaxcart__row">
-                                        <div className="ajaxcart__product cart_product" data-line={1}>
-                                            <div className="cart_image">
-                                                <img width={80} height={80} src="https:encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWjafn3qTV7audjpe2E4OhtSYAlaMdErjtLA&usqp=CAU" alt="Cà phê Khuây chữ G" />
-                                            </div>
-                                            <div className="grid__item cart_info">
-                                                <div className="ajaxcart__product-name-wrapper cart_name">
-                                                    <p>Cà phê Khuây chữ G</p>
-                                                    <span className="ajaxcart__product-meta variant-title">Khối lượng: 250g</span>
-                                                </div>
-                                                <div className="grid">
-                                                    <div className="grid__item one-half cart_select cart_item_name">
-                                                        <label className="cart_quantity">Số lượng</label>
-                                                        <div className="ajaxcart__qty input-group-btn clearfix">
-                                                            <button type="button"
-                                                                onClick={(event) => { var result = event.target.parentNode.childNodes[1]; var qty = result.value; if (qty > 1) result.value--; }}
-                                                                className="ajaxcart__qty-adjust ajaxcart__qty--minus items-count" data-id data-qty={0} data-line={1} aria-label="-"
-                                                            >
-                                                                -
-                                                            </button>
-                                                            <input type="text" name="updates[]" maxLength={3} defaultValue={1} min={0} data-id data-line={1}
-                                                                className="ajaxcart__qty-num number-sidebar" aria-label="quantity"
-                                                                onChange={(event) => { console.log(event.target); if (event.target.value === "0") event.target.value = 1; }} pattern="[0-9]*"
-                                                            />
-                                                            <button type="button"
-                                                                onClick={(event) => { var result = event.target.parentNode.childNodes[1]; var qty = result.value; if (!isNaN(qty)) result.value++; }}
-                                                                className="ajaxcart__qty-adjust ajaxcart__qty--plus items-count" data-id data-line={1} data-qty={2} aria-label="+"
-                                                            >
-                                                                +
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <div className="grid__item one-half text-right cart_prices">
-                                                        <span className="cart-price">500.000₫</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="ajaxcart__row">
-                                        <div className="ajaxcart__product cart_product" data-line={1}>
-                                            <div className="cart_image">
-                                                <img width={80} height={80} src="https:encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWjafn3qTV7audjpe2E4OhtSYAlaMdErjtLA&usqp=CAU" alt="GIÀY Adidas Ultraboost DNA X LEGO đỏ" />
-                                            </div>
-                                            <div className="grid__item cart_info">
-                                                <div className="ajaxcart__product-name-wrapper cart_name">
-                                                    <p>Cà phê Khuây chữ I</p>
-                                                    <span className="ajaxcart__product-meta variant-title">Khối lượng: 250g</span>
-                                                </div>
-                                                <div className="grid">
-                                                    <div className="grid__item one-half cart_select cart_item_name">
-                                                        <label className="cart_quantity">Số lượng</label>
-                                                        <div className="ajaxcart__qty input-group-btn clearfix">
-                                                            <button type="button" onClick={(event) => { var result = event.target.parentNode.childNodes[1]; var qty = result.value; if (qty > 1) result.value--; }} className="ajaxcart__qty-adjust ajaxcart__qty--minus items-count" data-id data-qty={0} data-line={1} aria-label="-">
-                                                                -
-                                                            </button>
-                                                            <input type="text" name="updates[]" className="cart_qty" maxLength={3} defaultValue={1} min={0} data-id data-line={1} aria-label="quantity" onChange={(event) => { if (event.target.value === "0") event.target.value = 1; }} pattern="[0-9]*" />
-                                                            <button type="button" onClick={(event) => { var result = event.target.parentNode.childNodes[1]; var qty = result.value; if (!isNaN(qty)) result.value++; }} className="ajaxcart__qty-adjust ajaxcart__qty--plus items-count" data-id data-line={1} data-qty={2} aria-label="+">
-                                                                +
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <div className="grid__item one-half text-right cart_prices">
-                                                        <span className="cart-price">500.000₫</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> */}
-
-
-
-
-
                                     </div>
                                     <div className="ajaxcart__inner ajaxcart__inner--has-fixed-footer cart_body items">
-
-                                        {/* <h1>{cartCustomer.idUser}</h1>
-                                        {cartCustomer.listQuantity.map((cart, index) => (
-                                                <h2>{cart}</h2>
-                                            ))} */}
-
-
-
 
                                     </div>
                                     <div className="ajaxcart__footer ajaxcart__footer--fixed cart-footer">
@@ -209,7 +130,8 @@ function Cart({ idUser }) {
                             </div>
                         </div>
                     </div>
-                    <div className="background-body active" />
+                    <div className="background-body active"
+                        onClick={() => showCartSide(false)} />
                 </div>
             </>
         )
