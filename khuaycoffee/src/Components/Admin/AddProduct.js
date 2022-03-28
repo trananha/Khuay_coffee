@@ -60,7 +60,6 @@ function AddProduct() {
     }
 
     return (
-        <div>
             <div className="content">
                 <h1>Thêm Sản Phẩm</h1>
 
@@ -168,12 +167,12 @@ function AddProduct() {
                 </table>
 
 
-                <div className="col-auto">
+                <div className="col-auto centerBtn">
                     <button type="submit" className="btn btn-primary buttonSubmit" onClick={handleSubmit}>Xác nhận</button>
                 </div>
             </div>
 
-        </div>
+        
     )
 }
 

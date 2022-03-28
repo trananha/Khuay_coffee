@@ -7,6 +7,7 @@ import {BsTrashFill} from 'react-icons/bs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useLocation} from 'react-router-dom';
 import { db,getData,deleteData,ORDER } from './../../Firebase/firebase';
+import OrderDetail from "./OrderDetail";
 
 const refreshData= async (setState)=>{
   const data= await getData(ORDER,db);
@@ -16,6 +17,8 @@ function Order(){
     const path= useLocation();
     const [orderData,setOrderData] =React.useState([]);
     const [update,setUpdate]=React.useState(true);
+    const [showDetail,setShowDetail]=React.useState(false);
+    const [docId,setDocId]=React.useState("");
     React.useEffect(()=>{
       refreshData(setOrderData)
     },[update]);
@@ -29,6 +32,7 @@ function Order(){
                 <br/>
                 <br/>
                 <br/>
+                <OrderDetail  setShowDetail={setShowDetail} docId={docId}/>
                 <ReactTable
                   data={orderData}
                   columns={[
@@ -61,7 +65,7 @@ function Order(){
                   ]}
                   getTrProps={(state, rowInfo, column) => {
                     return{
-                      onClick: (e)=>{console.log("hah1",rowInfo.row.docId)},
+                      onClick: (e)=>{ setShowDetail(true);setDocId(rowInfo.original.docId)},
                       style: {
                         cursor:"pointer"
                       }

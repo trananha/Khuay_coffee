@@ -27,6 +27,7 @@
     "react-swipeable-views": "^0.14.0",
     "react-table": "^7.7.0",
     "react-table-6": "^6.11.0",
+    "reactjs-popup": "^2.0.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

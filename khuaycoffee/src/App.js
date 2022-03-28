@@ -1,14 +1,9 @@
 import './App.css';
-// import AddProduct from './components/Admin/AddProduct';
-// import ChangeProductInfo from './components/Admin/ChangeProductInfo';
-// import OrderDetail from './components/Admin/OrderDetail';
 
 import { Route, Routes,Link } from 'react-router-dom';
 import Account from './components/Admin/Account';
 import Order from './components/Admin/Order';
 import Product from './components/Admin/Product';
-// import {db,CUSTOMER,getData,updateData,addData,deleteData} from './Firebase/firebase';
-// import { account_data } from './components/Admin/FakeData';
 import Home from './pages/trangchu';
 import SignInInterface from './pages/signin';
 import SignUpInterface from './pages/signup';
@@ -17,7 +12,7 @@ import ProductDetail from './components/Product/ProductDetail'
 import Header from './components/header.js'
 import Footer from './components/footer.js'
 import Products from './components/Products';
-var idSP = "SP01"
+var idSP = "SP03"
 function App() {
   return (
     <div>

@@ -7,6 +7,11 @@ import {BsTrashFill} from 'react-icons/bs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useLocation} from 'react-router-dom';
 import { db,getData,deleteData,PRODUCT } from './../../Firebase/firebase';
+import AddProduct from "./AddProduct";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import './AddProduct.css'
+import ChangeProductInfo from "./ChangeProductInfo";
 
 const refreshData= async (setState)=>{
     const data= await getData(PRODUCT,db);
@@ -15,7 +20,9 @@ const refreshData= async (setState)=>{
 
 function Product(){
     const path= useLocation();
+    const [showProductInfo, setShowProductInfo] = React.useState(false);
     const [productData,setProductData] =React.useState([]);
+    const [docIdProduct,setDocIdProduct] = React.useState("");
     const [update,setUpdate]=React.useState(true);
     React.useEffect(()=>{
       refreshData(setProductData)
@@ -29,6 +36,10 @@ function Product(){
                 <h2>Đơn hàng</h2>
                 <br/>
                 <br/>
+                {showProductInfo ? <ChangeProductInfo id ={docIdProduct} setState = {setShowProductInfo} callUp = {setUpdate} status = {update}/> : null}
+                <Popup trigger={<button > Thêm sản phẩm</button>} modal nested>
+                  <AddProduct/>
+                </Popup>
                 <br/>
                 <ReactTable
                   data={productData}
@@ -62,7 +73,14 @@ function Product(){
                   ]}
                   getTrProps={(state, rowInfo, column) => {
                     return{
-                      onClick: (e)=>{console.log("hah1",rowInfo.row.docId)},
+                      
+                      onClick: (e)=>
+                      {
+                        setShowProductInfo(true);
+                        console.log("hah1",rowInfo.row.docId);
+                        setDocIdProduct(rowInfo.row.docId);
+                        <ChangeProductInfo id ={docIdProduct} />
+                    },
                       style: {
                         cursor:"pointer"
                       }
@@ -71,7 +89,6 @@ function Product(){
                   
                 />
               </div>
-              
             </div>
             
         </>
