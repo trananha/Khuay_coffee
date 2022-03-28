@@ -2,17 +2,17 @@ import { BsFillBarChartFill,BsFillPeopleFill,BsFillRecordBtnFill } from "react-i
 export const PathData=[
     {
         title:'Đơn hàng',
-        path:'/admin/orders',
+        path:'/admin/order',
         icon: <BsFillBarChartFill/>
     },
     {
         title:'Sản phẩm',
-        path:'/admin/products',
+        path:'/admin/product',
         icon: <BsFillRecordBtnFill/>
     },
     {
         title:'Tài khoản',
-        path:'/admin/accounts',
+        path:'/admin/account',
         icon: <BsFillPeopleFill/>
     },
 ]

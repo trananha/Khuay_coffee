@@ -20,13 +20,14 @@ import { useNavigate } from 'react-router-dom';
 const theme = createTheme();
 
 
-async function Signin(email, password, setConfirm,dispatch) {
+async function Signin(email, password, setConfirm,dispatch,handleOnClickHome) {
   const data = await getData(CUSTOMER, db);
   for (let i=0; i<data.length; i++){
     if (email === data[i].email && password === data[i].password) {
       setConfirm('Đăng nhập thành công');
       
-      dispatch(login(data[i].name))
+      dispatch(login({name:data[i].name, isAdmin:data[i].admin}))
+      handleOnClickHome();
       return;
     }
   }
@@ -50,7 +51,7 @@ function SignInInterface() {
   const [password, setPassword] = React.useState('')
   const navigate = useNavigate()
   const handleOnClickRegister = useCallback(() => navigate('/register', {replace: true}), [navigate]);
-
+  const handleOnClickHome = useCallback(() => navigate('/', {replace: true}), [navigate]);
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{backgroundColor:"#C4C4C4"}} minHeight={450} pt={7}>
@@ -100,7 +101,7 @@ function SignInInterface() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, backgroundColor:"#542E2E" }}
-              onClick={()=>Signin(email, password, setConfirm,dispatch)}
+              onClick={()=>Signin(email, password, setConfirm,dispatch,handleOnClickHome)}
             >
               Đăng nhập
             </Button>

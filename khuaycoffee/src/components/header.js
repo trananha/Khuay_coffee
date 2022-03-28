@@ -24,6 +24,7 @@ const Header = () => {
   const dispatch=useDispatch();
   const isLogin= useSelector(state=>state.login.isLogin);
   const name=useSelector(state=>state.login.name);
+  const isAdmin=useSelector(state=>state.login.isAdmin)
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate()
@@ -32,7 +33,7 @@ const Header = () => {
   const handleOnClickHome = useCallback(() => navigate('/', {replace: true}), [navigate]);
   const handleOnClickLogin = useCallback(() => navigate('/login', {replace: true}), [navigate]);
   const handleOnClickRegister = useCallback(() => navigate('/register', {replace: true}), [navigate]);
-
+  const handleOnClickAdmin = useCallback(() => navigate('/admin/account', {replace: true}), [navigate]);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -99,6 +100,11 @@ const Header = () => {
               <MenuItem onClick={handleOnClickCart}>
                 <Typography textAlign="center">Giỏ hàng</Typography>
               </MenuItem>
+              {isAdmin ? (
+              <MenuItem onClick={handleOnClickAdmin}>
+                <Typography textAlign="center">Quản lý</Typography>
+              </MenuItem>
+              ) :(<></>)}
               <MenuItem onClick={handleOnClickLogin}>
                 <Typography textAlign="center">Đăng nhập</Typography>
               </MenuItem>
@@ -134,6 +140,14 @@ const Header = () => {
             >
               Giỏ hàng
             </Button>
+            {isAdmin ? (
+               <Button
+               onClick={handleOnClickAdmin}
+               sx={{ my: 2, mx: 1, color: 'white', display: 'block', fontWeight: 'bold' }}
+             >
+               Quản lý
+             </Button>
+            ):(<></>)}
           </Box>
           {isLogin? (
             <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
