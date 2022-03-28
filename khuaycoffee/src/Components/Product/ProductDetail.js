@@ -18,23 +18,36 @@ function ProductDetail({ id, idUser }) {
         ["French Press", "Bình pha cà phê (Percolator)", "Thử cà phê (Cupping)"]
     ]
 
+    const [grind, setGrind] = useState("Mịn");
+    const [weight, setWeight] = useState("");
     var [grindSize, showGrindSize] = useState(listGrindDetail[0]);
     const [cartSide, showCartSide] = useState(false);
-    const [dataCustomer, setDataCustomer] = useState([]);
+    // const [dataCustomer, setDataCustomer] = useState([]);
     const [dataProduct, setDataProduct] = useState([]);
     const [dataCart, setDataCart] = useState([]);
     const getDataAll = async () => {
-        setDataCustomer(await getData(CUSTOMER, db));
+        // setDataCustomer(await getData(CUSTOMER, db));
         setDataProduct(await getData(PRODUCT, db));
         setDataCart(await getData(CART, db));
     }
+    var cartCustomer;
+    for (var i of dataCart) {
+        if (i.idUser === idUser) {
+            cartCustomer = i;
+            // setLenList(i.listQuantity.length);
+            // console.log("find");
+            // setSumPrice(i.totalPrice);
+            break;
+        }
+    }
+    console.log(cartCustomer);
     // console.log(dataCustomer);
     useEffect(() => getDataAll(), []);
 
-    console.log(dataCustomer);
-    console.log(dataProduct);
-    console.log(dataCart);
-    console.log('after');
+    // console.log(dataCustomer);
+    // console.log(dataProduct);
+    // console.log(dataCart);
+    // console.log('after');
 
 
     // console.log(DataProduct);
@@ -45,13 +58,15 @@ function ProductDetail({ id, idUser }) {
     for (var i of dataProduct) {
         if (i.ID === id) {
             productDetail = i;
-            console.log("find");
+            // console.log("find");
             break;
         }
     }
-    console.log(productDetail);
+    // console.log(productDetail);
     // const [priceProduct, setPriceProduct] = useState(productDetail.price/4);
     const [priceProduct, setPriceProduct] = useState(0);
+    // console.log('set')
+    // const [sumPrice, setSumPrice] = useState(0);
 
 
     // function AddCart() {
@@ -60,6 +75,7 @@ function ProductDetail({ id, idUser }) {
     return (
         <>
         {/* {setPriceProduct(productDetail.price/4)} */}
+        
             <div className="body-product">
                 <div className="container">
                     <div className="detail-product">
@@ -78,19 +94,19 @@ function ProductDetail({ id, idUser }) {
                                             <div className="col-4">
                                                 <p>Kích cỡ xay:</p>
                                                 <div className="input-grind">
-                                                    <input onClick={() => showGrindSize(listGrindDetail[0])} type="radio" id="min" name="grind" defaultValue="Mịn" defaultChecked="checked" />
+                                                    <input onClick={() => {showGrindSize(listGrindDetail[0]); setGrind("Mịn")}} type="radio" id="min" name="grind" defaultValue="Mịn" defaultChecked="checked" />
                                                     <label htmlFor="min">Mịn</label><br />
                                                 </div>
                                                 <div className="input-grind">
-                                                    <input onClick={() => showGrindSize(listGrindDetail[1])} type="radio" id="hoi-min" name="grind" defaultValue="Hơi mịn" />
+                                                    <input onClick={() => {showGrindSize(listGrindDetail[1]); setGrind("Hơi mịn")}} type="radio" id="hoi-min" name="grind" defaultValue="Hơi mịn" />
                                                     <label htmlFor="hoi-min">Hơi mịn</label><br />
                                                 </div>
                                                 <div className="input-grind">
-                                                    <input onClick={() => showGrindSize(listGrindDetail[2])} type="radio" id="vua" name="grind" defaultValue="Vừa" />
+                                                    <input onClick={() => {showGrindSize(listGrindDetail[2]); setGrind("Vừa")}} type="radio" id="vua" name="grind" defaultValue="Vừa" />
                                                     <label htmlFor="vua">Vừa</label>
                                                 </div>
                                                 <div className="input-grind">
-                                                    <input onClick={() => showGrindSize(listGrindDetail[3])} type="radio" id="tho" name="grind" defaultValue="Thô" />
+                                                    <input onClick={() => {showGrindSize(listGrindDetail[3]); setGrind("Thô")}} type="radio" id="tho" name="grind" defaultValue="Thô" />
                                                     <label htmlFor="tho">Thô</label>
                                                 </div>
                                             </div>
@@ -107,11 +123,11 @@ function ProductDetail({ id, idUser }) {
                                                     <p className="bold">Khối lượng:</p>
                                                     <div className="input-grind">
                                                         {/* <input onLoad={setPriceProduct(productDetail.price/4)} type="radio" id="250g" name="weight" defaultValue="250g" defaultChecked="checked" /> */}
-                                                        <input onChange={() => setPriceProduct(productDetail.price/4)} type="radio" id="250g" name="weight" defaultValue="250g"/>
+                                                        <input onChange={() => {setPriceProduct(productDetail.price/4); setWeight("250g")}} type="radio" id="250g" name="weight" defaultValue="250g"/>
                                                         <label htmlFor="250g">250g</label><br />
                                                     </div>
                                                     <div className="input-grind">
-                                                        <input onChange={() => setPriceProduct(productDetail.price*8)} type="radio" id="10kg" name="weight" defaultValue="10kg" />
+                                                        <input onChange={() => {setPriceProduct(productDetail.price*8); setWeight("10kg")}} type="radio" id="10kg" name="weight" defaultValue="10kg" />
                                                         <label htmlFor="10kg">10kg</label><br />
                                                     </div>
                                                 </div>
@@ -122,10 +138,10 @@ function ProductDetail({ id, idUser }) {
 
                                                         <div className="input-qty prefix">
                                                             <p className="bold">Số lượng:</p>
-                                                            <button className="change-qty" onClick={() => { var num = document.getElementById('qty'); console.log(num); var qty = num.value; if (qty > 1) num.value--; }} type="button">
+                                                            <button className="change-qty" onClick={() => { var num = document.getElementById('qty');  var qty = num.value; if (qty > 1) num.value--; }} type="button">
                                                                 <i className="fa fa-minus-circle" aria-hidden="true"></i></button>
-                                                            <input id="qty" type="text" maxLength={4} defaultValue={1} onChange={() => { var num = document.getElementById('qty'); if (num.value === "0") num.value = 1; }} />
-                                                            <button className="change-qty" onClick={() => { var num = document.getElementById('qty'); var qty = num.value; if (qty < 999) num.value++; }} type="button">
+                                                            <input id="qty" type="text" maxLength={4} defaultValue={1} onChange={(e) => { var num = document.getElementById('qty'); if (num.value === "0") num.value = 1; console.log(e.target.value); }} />
+                                                            <button className="change-qty" onClick={() => { var num = document.getElementById('qty');  var qty = num.value; if (qty < 999) num.value++; }} type="button">
                                                                 <i className="fa fa-plus-circle" aria-hidden="true"></i>
                                                             </button>
 
@@ -135,7 +151,7 @@ function ProductDetail({ id, idUser }) {
                                                         <div className="product-price prefix">
                                                             <p className="text-start bold">Giá:</p>
                                                             <p className="text-end">{priceProduct} đ</p>
-                                                            {console.log(priceProduct)}
+                                                            {/* {console.log(priceProduct)} */}
                                                             {/* <p className="text-end">{productDetail.price} đ</p> */}
                                                         </div>
                                                         <button type="button" className="btn btn-primary btn-lg btn-gray btn-cart btn_buy add_to_cart"
@@ -147,7 +163,31 @@ function ProductDetail({ id, idUser }) {
                                                                 else {
                                                                     // AddCart();
                                                                     // var price = priceProduct;
+                                                                    // cartCustomer.listGrindSize.push()
+                                                                    var count = cartCustomer.listGrindSize.length;
+                                                                    let check = false;
+                                                                    for (var iCount = 0; iCount < count; iCount++){
+                                                                        if(cartCustomer.listIdProduct[iCount] === productDetail.ID && cartCustomer.listWeightProduct[iCount] === weight && cartCustomer.listGrindSize[iCount] === grind){
+                                                                            cartCustomer.listQuantity[iCount] += Number(document.getElementById('qty').value) ;
+                                                                            check = true;
+                                                                        }
+                                                                    }
+                                                                    if(!check){
+                                                                        cartCustomer.listGrindSize.push(grind);
+                                                                        cartCustomer.listIdProduct.push(productDetail.ID);
+                                                                        cartCustomer.listPrice.push(priceProduct);
+                                                                        cartCustomer.listQuantity.push( Number(document.getElementById('qty').value) );
+                                                                        cartCustomer.listWeightProduct.push(weight);
+                                                                        cartCustomer.listNameProduct.push(productDetail.name);
+                                                                    }
+                                                                    // console.log(priceProduct);
+                                                                    // console.log(weight);
+                                                                    // console.log(document.getElementById('qty').value);
+                                                                    
+                                                                    cartCustomer.totalPrice += Number(document.getElementById('qty').value) * Number(priceProduct);
+                                                                    updateData(cartCustomer, cartCustomer.docId, CART, db);
                                                                     showCartSide(!cartSide);
+
                                                                 }
                                                                 
                                                             } }
@@ -189,7 +229,7 @@ function ProductDetail({ id, idUser }) {
                     </div>
                 </div>
             </div>
-            {cartSide && <Cart idUser = {idUser} showCartSide = {showCartSide} />}
+            {cartSide && <Cart idUser = {idUser} showCartSide = {showCartSide} cartCustomer = {cartCustomer} />}
         </>
     )
 }
