@@ -36,9 +36,11 @@ function OrderDetail({ setShowDetail, docId }) {
     console.log(user)
     if (OrderDetail !== undefined && user !== undefined) {
         return (
-            <div onClick={()=>setShowDetail(false)} >
-                <div className="content2">
+            <div  style={{position: "fixed", "zIndex": "1" }}>
+                <div className="content2" style={{margin : "auto"}}>
+                    <button onClick={()=>setShowDetail(false)} style = {{float: "right"}}>Close</button>
                     <h1>Chi tiết đơn hàng</h1>
+                    
                     <div className="row">
                         <div className="col-md-6 alignment">
                             <b>Tên Khách Hàng: </b>
@@ -68,24 +70,24 @@ function OrderDetail({ setShowDetail, docId }) {
                             <th scope="col" >Tên SP</th>
                             <th scope="col">Mã SP</th>
                             <th scope="col">Đơn giá</th>
-                            <th scope="col">Kích cở</th>
+                            <th scope="col">Loại</th>
                             <th scope="col">Số lượng</th>
                             <th scope="col">Thành tiền</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {OrderDetail.list_nameProduct.map(item => {
+                        {OrderDetail.list_nameProduct.map((item,index) => {
                             var name,price,quantity,roast;
-                            var index = 0
+                            
                             for (var i of productsData) {
                                 if (i.ID === item) {
                                     name = i.name;
                                     price = i.price;
                                     quantity = i.quantity;
                                     roast = i.roast;
+                                    
                                     break;
                                 }
-                                index++;
                             }
                             return (
                             <tr key = {item}>
@@ -113,7 +115,7 @@ function OrderDetail({ setShowDetail, docId }) {
     else {
         return (
             <div>
-                <h1>Loading</h1>
+                {/* <h1>Loading</h1> */}
             </div>
         )
     }

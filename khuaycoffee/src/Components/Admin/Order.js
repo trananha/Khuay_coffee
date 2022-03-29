@@ -32,7 +32,7 @@ function Order(){
                 <br/>
                 <br/>
                 <br/>
-                <OrderDetail  setShowDetail={setShowDetail} docId={docId}/>
+                {showDetail ? <OrderDetail  setShowDetail={setShowDetail} docId={docId}/> : null}
                 <ReactTable
                   data={orderData}
                   columns={[
