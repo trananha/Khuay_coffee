@@ -3,9 +3,11 @@ import { createSlice, configureStore } from '@reduxjs/toolkit'
 const counterSlice = createSlice({
     name: 'login',
     initialState: {
+      docId:"111",
       isLogin: false,
       name:"0",
-      isAdmin: false
+      isAdmin: false,
+      
     },
     reducers: {
       login: (state,action) => {
@@ -13,14 +15,20 @@ const counterSlice = createSlice({
         // doesn't actually mutate the state because it uses the Immer library,
         // which detects changes to a "draft state" and produces a brand new
         // immutable state based off those changes
-        state.isLogin = true
+        console.log("action",action);
+        state.docId=action.payload.userID;
+        state.isLogin = true;
         state.name=action.payload.name;
         state.isAdmin=action.payload.isAdmin;
+        
+        console.log("redux",state.docId);
       },
-      logout: state => {
+      logout: (state,action) => {
+        state.docId="";
         state.isLogin = false
         state.name="0";
         state.isAdmin=false;
+        
       }
     }
 })

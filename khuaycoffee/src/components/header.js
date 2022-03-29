@@ -29,7 +29,7 @@ const Header = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate()
   const handleOnClickProducts = useCallback(() => navigate('/products', {replace: true}), [navigate]);
-  const handleOnClickCart = useCallback(() => navigate('/products', {replace: true}), [navigate]);
+  const handleOnClickCart = useCallback(() => navigate('/cart', {replace: true}), [navigate]);
   const handleOnClickHome = useCallback(() => navigate('/', {replace: true}), [navigate]);
   const handleOnClickLogin = useCallback(() => navigate('/login', {replace: true}), [navigate]);
   const handleOnClickRegister = useCallback(() => navigate('/register', {replace: true}), [navigate]);

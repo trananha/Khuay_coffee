@@ -7,38 +7,49 @@ import { useEffect } from 'react';
 import { db, getData, addData, deleteData, updateData, CUSTOMER, ORDER, PRODUCT, CART } from '../../Firebase/firebase';
 import { projectFirestore } from '../../Firebase/firebase';
 import sp1 from '../../assets/sp1.jpg';
+import { useSelector } from 'react-redux';
+import {useParams} from "react-router-dom";
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // function Cart({ idUser, id, quantity, grindSize }) {
-function Cart({ showCartSide, cartCustomer }) {
+// function CartP({ idUser, showCartSide }) {
+function CartP() {
     // var cartCustomer;
+    // const idUser = useSelector(state=>state.login.userID);
+    // const idUser = "TtGxZVtl3Okdtkrc16Th";
+    const idUser = useSelector(state=>state.login.docId);;
     const [sumPrice, setSumPrice] = useState(0);
     // const [lenList, setLenList] = useState(0);
     // const [dataProduct, setDataProduct] = useState([]);
-    // const [dataCart, setDataCart] = useState([]);
-    // const getDataAll = async () => {
-    //     setDataProduct(await getData(PRODUCT, db));
-    //     setDataCart(await getData(CART, db));
-    // }
-    // for (var i of dataCart) {
-    //     if (i.idUser === idUser) {
-    //         cartCustomer = i;
-    //         // setLenList(i.listQuantity.length);
-    //         console.log("find");
-    //         // setSumPrice(i.totalPrice);
-    //         break;
-    //     }
-    // }
-    // useEffect(() => getDataAll(), []);
+    const [dataCart, setDataCart] = useState([]);
+    const getDataAll = async () => {
+        // setDataProduct(await getData(PRODUCT, db));
+        setDataCart(await getData(CART, db));
+    }
+    useEffect(() => getDataAll(), []);
+    var cartCustomer;
+    for (var i of dataCart) {
+        if (i.userID === idUser) {
+            cartCustomer = i;
+            console.log('find');
 
-    // console.log(dataProduct);
-    // console.log(dataCart);
-    // console.log('after');
+            // setLenList(i.listQuantity.length);
+            // console.log("find");
+            // setSumPrice(i.totalPrice);
+            break;
+        }
+    }
+    console.log(cartCustomer);
 
+    console.log(dataCart);
+    console.log('after');
 
+    const navigate = useNavigate();
+    const handleOnClickHome = useCallback(() => navigate('/', {replace: true}), [navigate]);
 
     // console.log(cartCustomer);
     if (cartCustomer !== undefined) {
-        console.log(cartCustomer);
         console.log(cartCustomer);
         return (
             <>
@@ -47,7 +58,8 @@ function Cart({ showCartSide, cartCustomer }) {
                         <div className="clearfix cart_heading">
                             <h4 className="cart_title">Giỏ hàng</h4>
                             <div className="cart_btn-close" title="Đóng giỏ hàng"
-                                onClick={() => showCartSide(false)}
+                                // onClick={() => showCartSide(false)}
+                                onClick={() => handleOnClickHome}
                             >
                                 <svg className="Icon Icon--close" viewBox="0 0 16 14">
                                     <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fillRule="evenodd" />
@@ -172,7 +184,9 @@ function Cart({ showCartSide, cartCustomer }) {
                         </div>
                     </div>
                     <div className="background-body active"
-                        onClick={() => showCartSide(false)} />
+                        onClick = {handleOnClickHome}
+                        // onClick={() => showCartSide(false)} 
+                    />
                 </div>
             </>
         )
@@ -210,6 +224,6 @@ function Cart({ showCartSide, cartCustomer }) {
     )
 }
 
-export default Cart
+export default CartP
 
 // 

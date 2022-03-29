@@ -12,6 +12,7 @@ import ProductDetail from './components/Product/ProductDetail'
 import Header from './components/header.js'
 import Footer from './components/footer.js'
 import Products from './components/Products';
+import Cart from './pages/CartPage';
 var idSP = "SP03"
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/register" element={<SignUpInterface />} />
         <Route path="/products" element={<Products />} />
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer/>
     </div>

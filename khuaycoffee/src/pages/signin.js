@@ -26,7 +26,8 @@ async function Signin(email, password, setConfirm,dispatch,handleOnClickHome) {
     if (email === data[i].email && password === data[i].password) {
       setConfirm('Đăng nhập thành công');
       
-      dispatch(login({name:data[i].name, isAdmin:data[i].admin}))
+      dispatch(login({name:data[i].name, isAdmin:data[i].admin, userID:data[i].docId}))
+      
       handleOnClickHome();
       return;
     }

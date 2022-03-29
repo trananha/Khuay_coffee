@@ -8,15 +8,18 @@ import { db, getData, addData, deleteData, updateData, CUSTOMER, ORDER, PRODUCT,
 import { projectFirestore } from '../../Firebase/firebase';
 import  Cart  from '../Cart/Cart';
 import sp1 from '../../assets/sp1.jpg';
-
+import { useSelector } from 'react-redux';
+import {useParams} from "react-router-dom";
 // var id = "SP01";
 // var idUser = "KH02";
 
 // function ProductDetail({ id, idUser }) {
-function ProductDetail({ id, idUser }) {
+function ProductDetail() {
     // test
-    id = "SP01";
-    idUser = "KH02";
+    let { id } = useParams();
+    const idUser = useSelector(state=>state.login.docId);
+    console.log( "user" ,idUser);
+    console.log("id", id);
 
     const listGrindDetail = [
         ["Espresso", "Bình Moka", "Aeropress"],
@@ -39,7 +42,7 @@ function ProductDetail({ id, idUser }) {
     }
     var cartCustomer;
     for (var i of dataCart) {
-        if (i.idUser === idUser) {
+        if (i.userID === idUser) {
             cartCustomer = i;
             // setLenList(i.listQuantity.length);
             // console.log("find");
@@ -63,7 +66,7 @@ function ProductDetail({ id, idUser }) {
     // console.log(product);
     var productDetail = {};
     for (var i of dataProduct) {
-        if (i.ID === id) {
+        if (i.docId === id) {
             productDetail = i;
             // console.log("find");
             break;
@@ -172,7 +175,8 @@ function ProductDetail({ id, idUser }) {
                                                                     // var price = priceProduct;
                                                                     // cartCustomer.listGrindSize.push()
                                                                     if(cartCustomer === undefined){
-                                                                        cartCustomer.idUser = idUser;
+                                                                        cartCustomer = {};
+                                                                        cartCustomer.userID = idUser;
                                                                         cartCustomer.listGrindSize = [grind];
                                                                         cartCustomer.listIdProduct = [productDetail.ID];
                                                                         cartCustomer.listPrice = [priceProduct];
@@ -248,7 +252,8 @@ function ProductDetail({ id, idUser }) {
                     </div>
                 </div>
             </div>
-            {cartSide && <Cart idUser = {idUser} showCartSide = {showCartSide} cartCustomer = {cartCustomer} />}
+            {cartSide && <Cart showCartSide = {showCartSide} cartCustomer = {cartCustomer} />}
+            {/* {cartSide && <Cart idUser = {idUser} showCartSide = {showCartSide} cartCustomer = {cartCustomer} />} */}
         </>
     )
 }
