@@ -1,63 +1,68 @@
 import './OrderDetail.css'
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ORDER,CUSTOMER, db, getData } from '../../Firebase/firebase'
-function OrderDetail({setShowDetail,docId}) {
-    const [userData,setUserData] = useState([]);
-    const [orderData,setOrderData] = useState([]);
+import { ORDER, CUSTOMER,PRODUCT, db, getData } from '../../Firebase/firebase'
 
-    // // var 
-    // useEffect(async () => {
-    //     setOrderData(await getData(ORDER, db));
-    //     for (var i of orderData) {
-    //         if (i.ID === id) {
-    //             setOrderID(i.ID);
-    //             setCustomerID(i.customerid);
-    //             setDayTime(i.purchasedate);
-    //             setTotalmoney(i.totalmoney);
-    //             setOrder(i.list_product);
-    //         }
-    //     }
-    //     setUserData(await getData(CUSTOMER, db));
-    //     for (var i of userData) {
-    //         if (i.ID === customerID) {
-    //             setName(i.name);
-    //             setAddress(i.address);
-    //         }}
 
-    //     console.log("data")
-    //     console.log(orderData);
-    //     console.log(userData);
+function OrderDetail({ setShowDetail, docId }) {
+    const [userData, setUserData] = useState([]);
+    const [orderData, setOrderData] = useState([]);
+    const [productsData, setProductsData] = useState([]);
 
-    // }, [])
-    return (
-        <div >
-            {/* <div className="content2">
-                <h1>Chi tiết đơn hàng</h1>
-                <div className="row">
-                    <div className="col-md-6 alignment">
-                        <b>Tên Khách Hàng: </b>
-                        {name}
-                        <div>
-                            <b>Mã Đơn hàng: </b>
-                            {orderID}
+    var OrderDetail;
+    var user;
+    const getUserData = async () => {
+        setOrderData(await getData(ORDER, db));
+        setUserData(await getData(CUSTOMER, db));
+        setProductsData(await getData(PRODUCT, db));
+    }
+
+    for (var i of orderData) {
+        if (i.docId === docId) {
+            OrderDetail = i;
+            break;
+        }
+    }
+    if (OrderDetail !== undefined) {
+        for (var i of userData) {
+            if (i.ID === OrderDetail.customerid) {
+                user = i;
+                break;
+            }
+        }
+    }
+    useEffect(() => getUserData(), [])
+    console.log(OrderDetail)
+    console.log(user)
+    if (OrderDetail !== undefined && user !== undefined) {
+        return (
+            <div onClick={()=>setShowDetail(false)} >
+                <div className="content2">
+                    <h1>Chi tiết đơn hàng</h1>
+                    <div className="row">
+                        <div className="col-md-6 alignment">
+                            <b>Tên Khách Hàng: </b>
+                            {user.name}
+                            <div>
+                                <b>Mã Đơn hàng: </b>
+                                {OrderDetail.ID}
+                            </div>
+                            <div>
+                                <b>Địa chỉ: </b>
+                                {user.address}
+                            </div>
+                            <div>
+                                <b>Ngày đặt: </b>
+                                {OrderDetail.purchasedate}
+                            </div>
                         </div>
-                        <div>
-                            <b>Địa chỉ: </b>
-                            {address}
-                        </div>
-                        <div>
-                            <b>Ngày đặt: </b>
-                            {dayTime}
+                        <div className="col-md-4">
+                            <b>Mã Khách Hàng: </b>
+                            {user.ID}
                         </div>
                     </div>
-                    <div className="col-md-4">
-                        <b>Mã Khách Hàng: </b>
-                        {customerID}
-                    </div>
-                </div> */}
 
-                {/* <table className="table fullTable" >
+                    <table className="table fullTable" >
                     <thead>
                         <tr>
                             <th scope="col" >Tên SP</th>
@@ -69,26 +74,48 @@ function OrderDetail({setShowDetail,docId}) {
                         </tr>
                     </thead>
                     <tbody>
-                        {order.map(item => {
+                        {OrderDetail.list_nameProduct.map(item => {
+                            var name,price,quantity,roast;
+                            var index = 0
+                            for (var i of productsData) {
+                                if (i.ID === item) {
+                                    name = i.name;
+                                    price = i.price;
+                                    quantity = i.quantity;
+                                    roast = i.roast;
+                                    break;
+                                }
+                                index++;
+                            }
+                            return (
                             <tr key = {item}>
+                                <td>{name}</td>
                                 <td scope="row">{item}</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <td>{price}</td>
+                                <td>{roast}</td>
+                                <td>{OrderDetail.list_quantity[index]}</td>
+                                <td>{OrderDetail.list_quantity[index]*price}</td>
                             </tr>
-                        })}
+                            )})}
 
 
                     </tbody>
-                </table> */}
-                {/* <div>
-                    <b>Tổng tiền: </b>
-                    {order.length}
+                </table> 
+                    <div>
+                        <b>Tổng tiền: </b>
+                        {OrderDetail.totalmoney}
+                    </div>
                 </div>
-            </div> */}
-        </div>
-    )
+            </div>
+        )
+    }
+
+    else {
+        return (
+            <div>
+                <h1>Loading</h1>
+            </div>
+        )
+    }
 }
 export default OrderDetail;
