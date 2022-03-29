@@ -7,9 +7,16 @@ import { useEffect } from 'react';
 import { db, getData, addData, deleteData, updateData, CUSTOMER, ORDER, PRODUCT, CART } from '../../Firebase/firebase';
 import { projectFirestore } from '../../Firebase/firebase';
 import  Cart  from '../Cart/Cart';
-import sp1 from '../../assets/sp1.jpg';
+import sp1 from '../../Assets/sp1.jpg';
 
+// var id = "SP01";
+// var idUser = "KH02";
+
+// function ProductDetail({ id, idUser }) {
 function ProductDetail({ id, idUser }) {
+    // test
+    id = "SP01";
+    idUser = "KH02";
 
     const listGrindDetail = [
         ["Espresso", "Bình Moka", "Aeropress"],
@@ -164,30 +171,42 @@ function ProductDetail({ id, idUser }) {
                                                                     // AddCart();
                                                                     // var price = priceProduct;
                                                                     // cartCustomer.listGrindSize.push()
-                                                                    var count = cartCustomer.listGrindSize.length;
-                                                                    let check = false;
-                                                                    for (var iCount = 0; iCount < count; iCount++){
-                                                                        if(cartCustomer.listIdProduct[iCount] === productDetail.ID && cartCustomer.listWeightProduct[iCount] === weight && cartCustomer.listGrindSize[iCount] === grind){
-                                                                            cartCustomer.listQuantity[iCount] += Number(document.getElementById('qty').value) ;
-                                                                            check = true;
+                                                                    if(cartCustomer === undefined){
+                                                                        cartCustomer.idUser = idUser;
+                                                                        cartCustomer.listGrindSize = [grind];
+                                                                        cartCustomer.listIdProduct = [productDetail.ID];
+                                                                        cartCustomer.listPrice = [priceProduct];
+                                                                        cartCustomer.listWeightProduct = [weight];
+                                                                        cartCustomer.listNameProduct = [productDetail.name];
+                                                                        cartCustomer.listQuantity = [Number(document.getElementById('qty').value)];
+                                                                        cartCustomer.totalPrice += Number(document.getElementById('qty').value) * Number(priceProduct);
+                                                                        addData(cartCustomer, CART, db);
+                                                                    }
+                                                                    else{
+                                                                        var count = cartCustomer.listGrindSize.length;
+                                                                        let check = false;
+                                                                        for (var iCount = 0; iCount < count; iCount++){
+                                                                            if(cartCustomer.listIdProduct[iCount] === productDetail.ID && cartCustomer.listWeightProduct[iCount] === weight && cartCustomer.listGrindSize[iCount] === grind){
+                                                                                cartCustomer.listQuantity[iCount] += Number(document.getElementById('qty').value) ;
+                                                                                check = true;
+                                                                            }
                                                                         }
+                                                                        if(!check){
+                                                                            cartCustomer.listGrindSize.push(grind);
+                                                                            cartCustomer.listIdProduct.push(productDetail.ID);
+                                                                            cartCustomer.listPrice.push(priceProduct);
+                                                                            cartCustomer.listQuantity.push( Number(document.getElementById('qty').value) );
+                                                                            cartCustomer.listWeightProduct.push(weight);
+                                                                            cartCustomer.listNameProduct.push(productDetail.name);
+                                                                        }
+                                                                        // console.log(priceProduct);
+                                                                        // console.log(weight);
+                                                                        // console.log(document.getElementById('qty').value);
+                                                                        
+                                                                        cartCustomer.totalPrice += Number(document.getElementById('qty').value) * Number(priceProduct);
+                                                                        updateData(cartCustomer, cartCustomer.docId, CART, db);
+                                                                        showCartSide(!cartSide);
                                                                     }
-                                                                    if(!check){
-                                                                        cartCustomer.listGrindSize.push(grind);
-                                                                        cartCustomer.listIdProduct.push(productDetail.ID);
-                                                                        cartCustomer.listPrice.push(priceProduct);
-                                                                        cartCustomer.listQuantity.push( Number(document.getElementById('qty').value) );
-                                                                        cartCustomer.listWeightProduct.push(weight);
-                                                                        cartCustomer.listNameProduct.push(productDetail.name);
-                                                                    }
-                                                                    // console.log(priceProduct);
-                                                                    // console.log(weight);
-                                                                    // console.log(document.getElementById('qty').value);
-                                                                    
-                                                                    cartCustomer.totalPrice += Number(document.getElementById('qty').value) * Number(priceProduct);
-                                                                    updateData(cartCustomer, cartCustomer.docId, CART, db);
-                                                                    showCartSide(!cartSide);
-
                                                                 }
                                                                 
                                                             } }
