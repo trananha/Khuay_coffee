@@ -33,7 +33,7 @@ function Product(){
             <div className="d-flex flex-grow-1">
               <NavBar path={path.pathname}/>
               <div className="flex-grow-1 mx-4">
-                <h2>Đơn hàng</h2>
+                <h2>Sản phẩm</h2>
                 <br/>
                 <br/>
                 {showProductInfo ? <ChangeProductInfo id ={docIdProduct} setState = {setShowProductInfo} callUp = {setUpdate} status = {update}/> : null}

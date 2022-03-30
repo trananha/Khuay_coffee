@@ -91,7 +91,9 @@ function ProductDetail() {
                     <div className="detail-product">
                         <div className="row">
                             <div className="col-5">
-                                <img src={sp1} className="img-product img-fluid" alt="ảnh sản phẩm" />
+                                {/* <img src={sp1} className="img-product img-fluid" alt="ảnh sản phẩm" /> */}
+                                <img src="https://i.ibb.co/rMLQdcg/1cd3270b54457b-img-2478.png" className="img-product img-fluid" alt="ảnh sản phẩm" />
+                                {/* <img src="https://i.ibb.co/19k7J93/s-ng-o-5.jpg" className="img-product img-fluid" alt="ảnh sản phẩm" /> */}
 
                             </div>
                             <div className="col-7 prefix">

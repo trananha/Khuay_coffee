@@ -74,7 +74,7 @@ function Cart({ showCartSide, cartCustomer }) {
                                                     <div className="ajaxcart__row">
                                                         <div className="ajaxcart__product cart_product" data-line={1}>
                                                             <div className="cart_image">
-                                                                <img width={80} height={95} src="https:encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWjafn3qTV7audjpe2E4OhtSYAlaMdErjtLA&usqp=CAU" alt="Cà phê Khuây chữ G" />
+                                                                <img width={80} height={95} src="https://i.ibb.co/rMLQdcg/1cd3270b54457b-img-2478.png" alt="Cà phê Khuây chữ G" />
                                                             </div>
                                                             <div className="grid__item cart_info">
                                                                 <div className="ajaxcart__product-name-wrapper cart_name">
