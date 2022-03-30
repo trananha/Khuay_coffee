@@ -183,8 +183,11 @@ function ProductDetail() {
                                                                         cartCustomer.listWeightProduct = [weight];
                                                                         cartCustomer.listNameProduct = [productDetail.name];
                                                                         cartCustomer.listQuantity = [Number(document.getElementById('qty').value)];
-                                                                        cartCustomer.totalPrice += Number(document.getElementById('qty').value) * Number(priceProduct);
+                                                                        cartCustomer.totalPrice = Number(document.getElementById('qty').value) * Number(priceProduct);
+                                                                        // console.log(document.getElementById('qty').value);
+                                                                        // console.log(Number(priceProduct));
                                                                         addData(cartCustomer, CART, db);
+                                                                        showCartSide(!cartSide);
                                                                     }
                                                                     else{
                                                                         var count = cartCustomer.listGrindSize.length;

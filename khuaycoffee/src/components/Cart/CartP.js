@@ -9,16 +9,22 @@ import { projectFirestore } from '../../Firebase/firebase';
 import sp1 from '../../assets/sp1.jpg';
 import { useSelector } from 'react-redux';
 import {useParams} from "react-router-dom";
+import * as React from 'react';
+// import {store,logout} from '../redux/login'
+import { deepOrange } from '@mui/material/colors';
+import { useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // function Cart({ idUser, id, quantity, grindSize }) {
 // function CartP({ idUser, showCartSide }) {
 function CartP() {
+    const dispatch=useDispatch();
     // var cartCustomer;
     // const idUser = useSelector(state=>state.login.userID);
     // const idUser = "TtGxZVtl3Okdtkrc16Th";
-    const idUser = useSelector(state=>state.login.docId);;
+    const idUser = useSelector(state=>state.login.docId);
     const [sumPrice, setSumPrice] = useState(0);
     // const [lenList, setLenList] = useState(0);
     // const [dataProduct, setDataProduct] = useState([]);
@@ -47,6 +53,7 @@ function CartP() {
 
     const navigate = useNavigate();
     const handleOnClickHome = useCallback(() => navigate('/', {replace: true}), [navigate]);
+    const handleOnClickCheckout = useCallback(() => navigate('/checkout', {replace: true}), [navigate]);
 
     // console.log(cartCustomer);
     if (cartCustomer !== undefined) {
@@ -163,9 +170,6 @@ function CartP() {
 
                                         }
                                     </div>
-                                    <div className="ajaxcart__inner ajaxcart__inner--has-fixed-footer cart_body items">
-
-                                    </div>
                                     <div className="ajaxcart__footer ajaxcart__footer--fixed cart-footer">
                                         <div className="ajaxcart__subtotal">
                                             <div className="cart__subtotal">
@@ -176,7 +180,8 @@ function CartP() {
                                             </div>
                                         </div>
                                         <div className="cart__btn-proceed-checkout-dt">
-                                            <button type="button" className="button btn btn-default cart__btn-proceed-checkout" id="btn-proceed-checkout" title="Thanh toán">Thanh toán</button>
+                                            <button onClick={handleOnClickCheckout}
+                                             type="button" className="button btn btn-default cart__btn-proceed-checkout" id="btn-proceed-checkout" title="Thanh toán">Thanh toán</button>
                                         </div>
                                     </div>
                                 </form>
@@ -219,8 +224,49 @@ function CartP() {
 
     return (
         <>
-
-        </>
+                <div className="body-cart">
+                    <div id="CartDrawer" className="cart-sidebar active">
+                        <div className="clearfix cart_heading">
+                            <h4 className="cart_title">Giỏ hàng</h4>
+                            <div className="cart_btn-close" title="Đóng giỏ hàng"
+                                // onClick={() => showCartSide(false)}
+                                onClick={() => handleOnClickHome}
+                            >
+                                <svg className="Icon Icon--close" viewBox="0 0 16 14">
+                                    <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fillRule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div className="drawer__inner">
+                            <div id="CartContainer" className="CartSideContainer">
+                                <form action method="post" noValidate className="cart ajaxcart">
+                                    <div className="ajaxcart__inner ajaxcart__inner--has-fixed-footer cart_body items">
+                                        
+                                    </div>
+                                    <div className="ajaxcart__footer ajaxcart__footer--fixed cart-footer">
+                                        <div className="ajaxcart__subtotal">
+                                            <div className="cart__subtotal">
+                                                <div className="cart__col-6">Tổng tiền:</div>
+                                                <div className="text-right cart__total cart_total_price"><span className="total-price"> 0</span></div>
+                                                <div className="text-right cart__total"><span className="total-price"> ₫</span></div>
+                                                {/* <div className="text-right cart__totle"><span className="total-price"> {} ₫</span></div> */}
+                                            </div>
+                                        </div>
+                                        <div className="cart__btn-proceed-checkout-dt">
+                                            <button onClick={handleOnClickCheckout}
+                                             type="button" className="button btn btn-default cart__btn-proceed-checkout" id="btn-proceed-checkout" title="Thanh toán">Thanh toán</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="background-body active"
+                        onClick = {handleOnClickHome}
+                        // onClick={() => showCartSide(false)} 
+                    />
+                </div>
+            </>
     )
 }
 

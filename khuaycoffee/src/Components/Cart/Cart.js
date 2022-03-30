@@ -8,6 +8,9 @@ import { db, getData, addData, deleteData, updateData, CUSTOMER, ORDER, PRODUCT,
 import { projectFirestore } from '../../Firebase/firebase';
 import sp1 from '../../assets/sp1.jpg';
 
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 // function Cart({ idUser, id, quantity, grindSize }) {
 function Cart({ showCartSide, cartCustomer }) {
     // var cartCustomer;
@@ -37,6 +40,10 @@ function Cart({ showCartSide, cartCustomer }) {
 
 
     // console.log(cartCustomer);
+
+    const navigate = useNavigate();
+    // const handleOnClickHome = useCallback(() => navigate('/', {replace: true}), [navigate]);
+    const handleOnClickCheckout = useCallback(() => navigate('/checkout', {replace: true}), [navigate]);
     if (cartCustomer !== undefined) {
         console.log(cartCustomer);
         console.log(cartCustomer);
@@ -164,7 +171,8 @@ function Cart({ showCartSide, cartCustomer }) {
                                             </div>
                                         </div>
                                         <div className="cart__btn-proceed-checkout-dt">
-                                            <button type="button" className="button btn btn-default cart__btn-proceed-checkout" id="btn-proceed-checkout" title="Thanh toán">Thanh toán</button>
+                                            <button onClick = {handleOnClickCheckout}
+                                             type="button" className="button btn btn-default cart__btn-proceed-checkout" id="btn-proceed-checkout" title="Thanh toán">Thanh toán</button>
                                         </div>
                                     </div>
                                 </form>
