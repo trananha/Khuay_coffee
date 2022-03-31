@@ -280,7 +280,19 @@ function Checkout() {
                                     <button 
                                         onClick = { () => {
                                             alert('Xác nhận đơn hàng thành công. Chúng tôi sẽ sớm gửi hàng cho bạn');
-                                            deleteData(cartCustomer.docId, CART, db );
+                                            // cartCustomer = {};
+                                            // cartCustomer.userID = idUser;
+                                            cartCustomer.listGrindSize = [];
+                                            cartCustomer.listIdProduct = [];
+                                            cartCustomer.listPrice = [];
+                                            cartCustomer.listWeightProduct = [];
+                                            cartCustomer.listNameProduct = [];
+                                            cartCustomer.listQuantity = [];
+                                            cartCustomer.totalPrice = Number(0);
+                                            // console.log(document.getElementById('qty').value);
+                                            // console.log(Number(priceProduct));
+                                            updateData(cartCustomer, cartCustomer.docId, CART, db);
+                                            // deleteData(cartCustomer.docId, CART, db );
                                             handleOnClickHome();
                                         } }
                                     className="w-100 btn btn-primary btn-lg" type="submit">Xác nhận thanh toán</button>
