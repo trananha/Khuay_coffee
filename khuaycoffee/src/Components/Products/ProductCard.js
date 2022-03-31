@@ -14,7 +14,7 @@ function ProductCard (product)
           </div>
           <h6 className='cardname'>{product.props.name}</h6>
           <h6 className='cardprice'>{product.props.price+" VND"}</h6>
-          <div className='add'>
+          <div onClick={handleOnClickAdmin} className='add'>
             Thêm vào giỏ hàng
           </div>  
         </div>
