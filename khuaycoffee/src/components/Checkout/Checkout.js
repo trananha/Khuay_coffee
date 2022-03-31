@@ -140,24 +140,31 @@ function Checkout() {
                                         </div>
                                     </div> */}
                                         <div className="col-12">
-                                            <label htmlFor="email" className="form-label">Email <span className="text-muted">(Optional)</span></label>
-                                            <input type="email" className="form-control" id="email" placeholder="you@example.com" />
+                                            <label htmlFor="email" className="form-label">Email <span className="text-muted"></span></label>
+                                            <input type="email" className="form-control" id="email" placeholder="" />
                                             <div className="invalid-feedback">
                                                 Please enter a valid email address for shipping updates.
                                             </div>
                                         </div>
                                         <div className="col-12">
+                                            <label htmlFor="email" className="form-label">Số điện thoại <span className="text-muted"></span></label>
+                                            <input type="email" className="form-control" id="email" placeholder="" />
+                                            <div className="invalid-feedback">
+                                                Please enter a valid phone address for shipping updates.
+                                            </div>
+                                        </div>
+                                        <div className="col-12">
                                             <label htmlFor="address" className="form-label">Địa chỉ</label>
-                                            <input type="text" className="form-control" id="address" placeholder="1234 Main St" required />
+                                            <input type="text" className="form-control" id="address" placeholder="" required />
                                             <div className="invalid-feedback">
                                                 Please enter your shipping address.
                                             </div>
                                         </div>
                                         <div className="col-12">
-                                            <label htmlFor="address2" className="form-label">Địa chỉ 2 <span className="text-muted">(Optional)</span></label>
-                                            <input type="text" className="form-control" id="address2" placeholder="Apartment or suite" />
+                                            <label htmlFor="address2" className="form-label">Địa chỉ 2 <span className="text-muted"></span></label>
+                                            <input type="text" className="form-control" id="address2" placeholder="" />
                                         </div>
-                                        <div className="col-md-5">
+                                        {/* <div className="col-md-5">
                                             <label htmlFor="country" className="form-label">Country</label>
                                             <select className="form-select" id="country" required>
                                                 <option value>Choose...</option>
@@ -187,7 +194,7 @@ function Checkout() {
                                             <div className="invalid-feedback">
                                                 Zip code required.
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <hr className="my-4" />
                                     <div className="form-check">
@@ -279,6 +286,15 @@ function Checkout() {
                                     <hr className="my-4" />
                                     <button 
                                         onClick = { () => {
+                                            // if(document.querySelector('#first-name').value) {}
+                                            // console.log(document.querySelector('#first-name').value);
+                                            // if(document.querySelector('#first-name').value) {}
+                                            // if(document.querySelector('#first-name').value) {}
+                                            // if(document.querySelector('#first-name').value) {}
+                                            // if(document.querySelector('#first-name').value) {}
+                                            // if(document.querySelector('#first-name').value) {}
+                                            // if(document.querySelector('#first-name').value) {}
+                                            // if(document.querySelector('#first-name').value) {}
                                             alert('Xác nhận đơn hàng thành công. Chúng tôi sẽ sớm gửi hàng cho bạn');
                                             // cartCustomer = {};
                                             // cartCustomer.userID = idUser;
