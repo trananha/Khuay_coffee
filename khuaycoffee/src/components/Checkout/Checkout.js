@@ -14,7 +14,7 @@ import './form-validation.css';
 import './form-validation.js';
 import './checkout.css';
 import { useSelector } from 'react-redux';
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ import { useNavigate } from 'react-router-dom';
 function Checkout() {
 
     // const idUser = "TtGxZVtl3Okdtkrc16Th";
-    const idUser = useSelector(state=>state.login.docId);
+    const idUser = useSelector(state => state.login.docId);
 
     const costTransform = 30000;
     const [dataCart, setDataCart] = useState([]);
@@ -48,7 +48,7 @@ function Checkout() {
     console.log(cartCustomer);
 
     const navigate = useNavigate();
-    const handleOnClickHome = useCallback(() => navigate('/', {replace: true}), [navigate]);
+    const handleOnClickHome = useCallback(() => navigate('/', { replace: true }), [navigate]);
 
     if (cartCustomer !== undefined) {
         return (
@@ -117,14 +117,14 @@ function Checkout() {
                                     <div className="row g-3">
                                         <div className="col-sm-6">
                                             <label htmlFor="firstName" className="form-label">Họ và tên đệm</label>
-                                            <input type="text" className="form-control" id="firstName" placeholder  required />
+                                            <input type="text" className="form-control" id="firstName" placeholder required />
                                             <div className="invalid-feedback">
                                                 Valid first name is required.
                                             </div>
                                         </div>
                                         <div className="col-sm-6">
                                             <label htmlFor="lastName" className="form-label">Tên</label>
-                                            <input type="text" className="form-control" id="lastName" placeholder  required />
+                                            <input type="text" className="form-control" id="lastName" placeholder required />
                                             <div className="invalid-feedback">
                                                 Valid last name is required.
                                             </div>
@@ -148,7 +148,7 @@ function Checkout() {
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="email" className="form-label">Số điện thoại <span className="text-muted"></span></label>
-                                            <input type="email" className="form-control" id="email" placeholder="" />
+                                            <input type="email" className="form-control" id="phone" placeholder="" />
                                             <div className="invalid-feedback">
                                                 Please enter a valid phone address for shipping updates.
                                             </div>
@@ -245,7 +245,7 @@ function Checkout() {
                                     <div className="payment-momo-info row gy-3 d-none">
                                         <div className="col-md-6">
                                             <label htmlFor="cc-name" className="form-label">Số điện thoại</label>
-                                            <input type="text" className="form-control" id="cc-name" placeholder required />
+                                            <input type="text" className="form-control" id="cc-phone" placeholder required />
                                             <small className="text-muted">Full name as displayed on card</small>
                                             <div className="invalid-feedback">
                                                 Name on card is required
@@ -255,7 +255,7 @@ function Checkout() {
                                     <div className="payment-card-info row gy-3 d-none">
                                         <div className="col-md-6">
                                             <label htmlFor="cc-name" className="form-label">Tên thẻ</label>
-                                            <input type="text" className="form-control" id="cc-name" placeholder required />
+                                            <input type="text" className="form-control" id="cc-card" placeholder required />
                                             <small className="text-muted">Full name as displayed on card</small>
                                             <div className="invalid-feedback">
                                                 Name on card is required
@@ -284,8 +284,8 @@ function Checkout() {
                                         </div>
                                     </div>
                                     <hr className="my-4" />
-                                    <button 
-                                        onClick = { () => {
+                                    <button
+                                        onClick={(event) => {
                                             // if(document.querySelector('#first-name').value) {}
                                             // console.log(document.querySelector('#first-name').value);
                                             // if(document.querySelector('#first-name').value) {}
@@ -297,34 +297,64 @@ function Checkout() {
                                             // if(document.querySelector('#first-name').value) {}
                                             // cartCustomer = {};
                                             // cartCustomer.userID = idUser;
-                                            var NewOder = {};
-                                            NewOder.customerid = idUser;
-                                            var orderDate = new Date();
-                                            NewOder.purchasedate = orderDate.getDate() + '/' + (orderDate.getMonth() + 1) + '/' + orderDate.getFullYear();
-                                            NewOder.list_nameProduct = cartCustomer.listNameProduct;
-                                            NewOder.list_quantity = cartCustomer.listQuantity;
-                                            NewOder.totalmoney = cartCustomer.totalPrice + costTransform;
-                                            NewOder.list_price = cartCustomer.listPrice;
-                                            NewOder.ID = cartCustomer.docId;
-                                            addData(NewOder, ORDER, db);
 
-                                            alert('Xác nhận đơn hàng thành công. Chúng tôi sẽ sớm gửi hàng cho bạn');
+                                            var checkForm = true;
+                                            if (document.getElementById('firstName').value.length == 0) {
+                                                alert('Vui lòng nhập họ tên');
+                                                checkForm = false;
+                                                event.preventDefault();
+                                            }
+                                            else{
+                                                if (document.getElementById('lastName').value.length == 0) {
+                                                    alert('Vui lòng nhập họ tên');
+                                                    checkForm = false;
+                                                }
+                                                else {
+                                                    if (document.getElementById('phone').value.length == 0) {
+                                                        alert('Vui lòng nhập số điện thoại');
+                                                        checkForm = false;
+                                                    }
+                                                    else {
+                                                        if (document.getElementById('address').value.length == 0) {
+                                                            alert('Vui lòng nhập địa chỉ');
+                                                            checkForm = false;
+                                                        }
+                                                    }
+                                                }
+                                                event.preventDefault()
+                                            }
+                                            if (checkForm) {
+                                                var NewOder = {};
+                                                NewOder.customerid = idUser;
+                                                var orderDate = new Date();
+                                                NewOder.purchasedate = orderDate.getDate() + '/' + (orderDate.getMonth() + 1) + '/' + orderDate.getFullYear();
+                                                NewOder.list_nameProduct = cartCustomer.listNameProduct;
+                                                NewOder.list_quantity = cartCustomer.listQuantity;
+                                                NewOder.totalmoney = cartCustomer.totalPrice + costTransform;
+                                                NewOder.list_price = cartCustomer.listPrice;
+                                                NewOder.ID = cartCustomer.docId;
+                                                addData(NewOder, ORDER, db);
 
-                                            console.log(NewOder);
-                                            cartCustomer.listGrindSize = [];
-                                            cartCustomer.listIdProduct = [];
-                                            cartCustomer.listPrice = [];
-                                            cartCustomer.listWeightProduct = [];
-                                            cartCustomer.listNameProduct = [];
-                                            cartCustomer.listQuantity = [];
-                                            cartCustomer.totalPrice = Number(0);
-                                            // console.log(document.getElementById('qty').value);
-                                            // console.log(Number(priceProduct));
-                                            updateData(cartCustomer, cartCustomer.docId, CART, db);
-                                            // deleteData(cartCustomer.docId, CART, db );
-                                            handleOnClickHome();
-                                        } }
-                                    className="w-100 btn btn-primary btn-lg" type="submit">Xác nhận thanh toán</button>
+                                                alert('Xác nhận đơn hàng thành công. Chúng tôi sẽ sớm gửi hàng cho bạn');
+
+                                                console.log(NewOder);
+                                                cartCustomer.listGrindSize = [];
+                                                cartCustomer.listIdProduct = [];
+                                                cartCustomer.listPrice = [];
+                                                cartCustomer.listWeightProduct = [];
+                                                cartCustomer.listNameProduct = [];
+                                                cartCustomer.listQuantity = [];
+                                                cartCustomer.totalPrice = Number(0);
+                                                // console.log(document.getElementById('qty').value);
+                                                // console.log(Number(priceProduct));
+                                                updateData(cartCustomer, cartCustomer.docId, CART, db);
+                                                // deleteData(cartCustomer.docId, CART, db );
+                                                handleOnClickHome();
+                                            }
+
+
+                                        }}
+                                        className="w-100 btn btn-primary btn-lg" type="submit">Xác nhận thanh toán</button>
                                 </form>
                             </div>
                         </div>
