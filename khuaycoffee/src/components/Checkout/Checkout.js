@@ -303,7 +303,8 @@ function Checkout() {
                                             NewOder.purchasedate = orderDate.getDate() + '/' + (orderDate.getMonth() + 1) + '/' + orderDate.getFullYear();
                                             NewOder.list_nameProduct = cartCustomer.listNameProduct;
                                             NewOder.list_quantity = cartCustomer.listQuantity;
-                                            NewOder.totalmoney = cartCustomer.totalPrice;
+                                            NewOder.totalmoney = cartCustomer.totalPrice + costTransform;
+                                            NewOder.list_price = cartCustomer.listPrice;
                                             NewOder.ID = cartCustomer.docId;
                                             addData(NewOder, ORDER, db);
 

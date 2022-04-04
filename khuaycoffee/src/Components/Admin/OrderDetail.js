@@ -94,10 +94,10 @@ function OrderDetail({ setShowDetail, docId }) {
                         
                                 <td scope="row">{item}</td>
                                 <td>{id}</td>
-                                <td>{price}</td>
+                                <td>{OrderDetail.list_price[index]}</td>
                                 <td>{roast}</td>
                                 <td>{OrderDetail.list_quantity[index]}</td>
-                                <td>{OrderDetail.list_quantity[index]*price}</td>
+                                <td>{OrderDetail.list_quantity[index]*OrderDetail.list_price[index]}</td>
                             </tr>
                             )})}
 
