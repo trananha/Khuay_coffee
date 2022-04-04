@@ -196,7 +196,7 @@ function Checkout() {
                                             </div>
                                         </div> */}
                                     </div>
-                                    <hr className="my-4" />
+                                    {/* <hr className="my-4" />
                                     <div className="form-check">
                                         <input type="checkbox" className="form-check-input" id="same-address" />
                                         <label className="form-check-label" htmlFor="same-address">Địa chỉ giao hàng giống với địa chỉ thanh toán của tôi</label>
@@ -204,7 +204,7 @@ function Checkout() {
                                     <div className="form-check">
                                         <input type="checkbox" className="form-check-input" id="save-info" />
                                         <label className="form-check-label" htmlFor="save-info">Lưu thông tin này cho lần sau</label>
-                                    </div>
+                                    </div> */}
                                     <hr className="my-4" />
                                     <h4 className="mb-3">Thanh toán</h4>
                                     <div className="my-3">
@@ -295,9 +295,21 @@ function Checkout() {
                                             // if(document.querySelector('#first-name').value) {}
                                             // if(document.querySelector('#first-name').value) {}
                                             // if(document.querySelector('#first-name').value) {}
-                                            alert('Xác nhận đơn hàng thành công. Chúng tôi sẽ sớm gửi hàng cho bạn');
                                             // cartCustomer = {};
                                             // cartCustomer.userID = idUser;
+                                            var NewOder = {};
+                                            NewOder.customerid = idUser;
+                                            var orderDate = new Date();
+                                            NewOder.purchasedate = orderDate.getDate() + '/' + (orderDate.getMonth() + 1) + '/' + orderDate.getFullYear();
+                                            NewOder.list_nameProduct = cartCustomer.listNameProduct;
+                                            NewOder.list_quantity = cartCustomer.listQuantity;
+                                            NewOder.totalmoney = cartCustomer.totalPrice;
+                                            NewOder.ID = cartCustomer.docId;
+                                            addData(NewOder, ORDER, db);
+
+                                            alert('Xác nhận đơn hàng thành công. Chúng tôi sẽ sớm gửi hàng cho bạn');
+
+                                            console.log(NewOder);
                                             cartCustomer.listGrindSize = [];
                                             cartCustomer.listIdProduct = [];
                                             cartCustomer.listPrice = [];

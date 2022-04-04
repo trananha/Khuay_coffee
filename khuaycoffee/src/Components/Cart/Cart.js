@@ -56,7 +56,7 @@ function Cart({ showCartSide, cartCustomer }) {
                             <div className="cart_btn-close" title="Đóng giỏ hàng"
                                 onClick={() => showCartSide(false)}
                             >
-                                <svg className="Icon Icon--close" viewBox="0 0 16 14">
+                                <svg onClick={() => showCartSide(false)} className="Icon Icon--close" viewBox="0 0 16 14">
                                     <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fillRule="evenodd" />
                                 </svg>
                             </div>

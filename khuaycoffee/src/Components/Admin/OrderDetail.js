@@ -25,7 +25,8 @@ function OrderDetail({ setShowDetail, docId }) {
     }
     if (OrderDetail !== undefined) {
         for (var i of userData) {
-            if (i.ID === OrderDetail.customerid) {
+            // if (i.ID === OrderDetail.customerid) {
+            if (i.docId === OrderDetail.customerid) {
                 user = i;
                 break;
             }

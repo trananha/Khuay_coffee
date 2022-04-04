@@ -18,7 +18,9 @@ function ProductDetail() {
     // test
     let { id } = useParams();
     const idUser = useSelector(state=>state.login.docId);
+    // const custumerid = useSelector(state=>state.login);
     console.log( "user" ,idUser);
+    // console.log( "customer id" ,custumerid);
     console.log("id", id);
 
     const listGrindDetail = [
