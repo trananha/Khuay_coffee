@@ -78,13 +78,12 @@ function OrderDetail({ setShowDetail, docId }) {
                     </thead>
                     <tbody>
                         {OrderDetail.list_nameProduct.map((item,index) => {
-                            var name,price,quantity,roast;
+                            var id,price,roast;
                             
                             for (var i of productsData) {
-                                if (i.ID === item) {
-                                    name = i.name;
+                                if (i.name === item) {
+                                    id = i.ID;
                                     price = i.price;
-                                    quantity = i.quantity;
                                     roast = i.roast;
                                     
                                     break;
@@ -92,8 +91,9 @@ function OrderDetail({ setShowDetail, docId }) {
                             }
                             return (
                             <tr key = {item}>
-                                <td>{name}</td>
+                        
                                 <td scope="row">{item}</td>
+                                <td>{id}</td>
                                 <td>{price}</td>
                                 <td>{roast}</td>
                                 <td>{OrderDetail.list_quantity[index]}</td>
