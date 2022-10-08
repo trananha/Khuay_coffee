@@ -2,8 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import demo from "../assets/demo4.jpg"
-import khuyacoffeepods from "../assets/khuaycoffeepods.png"
+import demo from "../Assets/demo4.jpg"
+import khuyacoffeepods from "../Assets/khuaycoffeepods.png"
 import {Grid} from "@mui/material";
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';

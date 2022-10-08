@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { db, getData, addData, deleteData, updateData, CUSTOMER, ORDER, PRODUCT, CART } from '../../Firebase/firebase';
 import { projectFirestore } from '../../Firebase/firebase';
-import sp1 from '../../assets/sp1.jpg';
+import sp1 from '../../Assets/sp1.jpg';
 
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';

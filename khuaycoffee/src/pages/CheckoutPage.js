@@ -1,5 +1,5 @@
 import React from "react";
-import Checkout from "../components/Checkout/Checkout";
+import Checkout from "../Components/Checkout/Checkout";
 // import NavbarAdmin from "../components/Navbar/NavbarAdmin";
 
 const CheckoutPage = () => {

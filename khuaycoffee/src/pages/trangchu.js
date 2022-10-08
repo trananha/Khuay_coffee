@@ -1,5 +1,5 @@
-import Banner from '../components/banner';
-import SwipeableTextMobileStepper from '../components/carousel';
+import Banner from '../Components/banner';
+import SwipeableTextMobileStepper from '../Components/carousel';
 
 function Home() {
   return (

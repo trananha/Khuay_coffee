@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import logo from "../assets/logo-header.png";
+import logo from "../Assets/logo-header.png";
 import {store,logout} from '../redux/login'
 import { deepOrange } from '@mui/material/colors';
 import { useSelector, useDispatch } from 'react-redux';

@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { db, getData, addData, deleteData, updateData, CUSTOMER, ORDER, PRODUCT, CART } from '../../Firebase/firebase';
 import { projectFirestore } from '../../Firebase/firebase';
 import  Cart  from '../Cart/Cart';
-import sp1 from '../../assets/sp1.jpg';
+import sp1 from '../../Assets/sp1.jpg';
 import { useSelector } from 'react-redux';
 import {useParams} from "react-router-dom";
 // var id = "SP01";

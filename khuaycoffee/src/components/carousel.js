@@ -10,9 +10,9 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { Grid } from '@mui/material';
-import phuonghuong from "../assets/phuonghuong.jpg"
-import trainghiem from "../assets/trainghiem.jpg"
-import thanhtuu from "../assets/demo.jpg"
+import phuonghuong from "../Assets/phuonghuong.jpg"
+import trainghiem from "../Assets/trainghiem.jpg"
+import thanhtuu from "../Assets/demo.jpg"
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 

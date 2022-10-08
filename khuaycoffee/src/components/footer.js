@@ -1,9 +1,9 @@
 import React from 'react';
 import {Grid, Typography} from "@mui/material";
-import footer from '../assets/footer.png'
-import facebook_icon from '../assets/facebook.png';
-import twitter_icon from '../assets/twitter.png';
-import google_icon from '../assets/instagram.png';
+import footer from '../Assets/footer.png'
+import facebook_icon from '../Assets/facebook.png';
+import twitter_icon from '../Assets/twitter.png';
+import google_icon from '../Assets/instagram.png';
 import Box from "@mui/material/Box";
 // import {company_selectors} from "../../redux/slices/company/SettingsSlice";
 // import {useSelector} from "react-redux";
